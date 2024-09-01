@@ -1,0 +1,108 @@
+{
+	"openapi": "3.0.2",
+	"info": {
+		"title": "ToDo List API",
+		"version": "1.0"
+	},
+	"servers": [
+		{
+			"url": "https://localhost:8080/api"
+		}
+	],
+	"paths": {
+		"/tasks": {
+			"post": {
+				"summary": "Add a new task",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"task name": {
+										"type": "string"
+									},
+									"planned date": {
+										"type": "string",
+										"format": "date-time"
+									}
+								},
+								"required": ["task name", "planned date"]
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Task added successfully"
+					}
+				}
+			}
+		},
+		"/tasks/{id}": {
+			"delete": {
+				"summary": "Remove a task",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "integer"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Task removed successfully"
+					},
+					"404": {
+						"description": "Task not found"
+					}
+				}
+			},
+			"post": {
+				"summary": "Edit a task",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "integer"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"task name": {
+										"type": "string"
+									},
+									"planned date": {
+										"type": "string",
+										"format": "date-time"
+									}
+								},
+								"required": ["task name", "planned date"]
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Task edited successfully"
+					},
+					"404": {
+						"description": "Task not found"
+					}
+				}
+			}
+		}
+	}
+}
