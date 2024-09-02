@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ToDoListApplication {
 
     public static void main(String[] args) {
+        System.out.println();
         SpringApplication.run(ToDoListApplication.class, args);
     }
 }
