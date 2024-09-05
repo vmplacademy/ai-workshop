@@ -63,32 +63,80 @@ Goal of this project is to introduce you to the GitHub Copilot and its capabilit
 
 ### Create RestController with GitHub Copilot Chat
 
-- **TaskController**: Implement `TaskController` with injected `TaskService`.
+**TaskController**: Implement `TaskController` with injected `TaskService`.
+
+Prompt examples:
+```text
+We are going to create simple ToDo list application. Do not! provide any suggestions at this point. It just for context. 
+We are going to implement it step by step starting with TaskController. Just wait for my next promtps.
+```
+```text
+Create TaskController with injected TaskService as interface in Spring Boot as RestController for CRUD operations for ToDo application. 
+Provide only empty bodies without implementations. Handle proper operations via suitable Http methods
+```
 
 ### CRUD Operations Implementation
 
-- **Create Method**: Step-by-step guide to implementing the `create` method.
-- **Delete Method**: Step-by-step guide to implementing the `delete` method.
-- **Update Method**: Step-by-step guide to implementing the `update` method.
+**Create Method**: Step-by-step guide to implementing the `create` method.
 
+Prompt example:
+```text
+Create "create" method using TaskService. It takes object named CreateTaskCommand as parameter. Returned type should be TaskQuery.
+```
+
+**Delete Method**: Step-by-step guide to implementing the `delete` method.
+
+Prompt example:
+```text
+Create "delete" method using TaskService. It takes TaskId as Long as parameters. This method should be 'void'.
+
+```
+**Update Method**: Step-by-step guide to implementing the `update` method.
+
+Prompt example:
+```text
+Create "update" method using TaskService. It takes object named UpdateTaskCommand as parameter. Returned type should be TaskQuery.
+```
 ## 3. Service Layer Implementation
 
-- **CalculatorService**: Implement `CalculatorServiceAdapter` with Spring’s `@Service` annotation.
+**CalculatorService**: Implement `TaskServiceAdapter` with Spring’s `@Service` annotation.
+
+Prompt example:
+```text
+Based on TaskController provide proper implementation for interface TaskService as TaskServiceAdapter. It should contain Spring "@Service" annotation.
+```
 
 ## 4. Entity and Repository Setup
 
 ### Create TaskEntity
 
-- **TaskEntity**: Define with relevant Lombok annotations and JPA configuration.
+**TaskEntity**: Define with relevant Lombok annotations and JPA configuration.
+
+Prompt example:
+```text
+Create TaskEntity with all relevant Lombok annotations for storing jpa entity. Use table name as "t_task".  
+Provide all relevant columns as String: "name", TaskStatus (enum): "status". Add proper data types for each column. 
+```
 
 ### Create TaskRepository
 
-- **TaskRepository**: Implement `TaskRepository` extending `JpaRepository`.
+**TaskRepository**: Implement `TaskRepository` extending `JpaRepository`.
+
+Prompt example:
+```text
+Create TaskRepository, which extends JpaRepository based on TaskEntity.
+```
 
 ## 5. Exercise 1: New controller's method
 
-- **Exercise**: Implement the `getAllTasks` method in both `TaskController` and `TaskService`.
-- **Optional**: If needed, checkout proper project version at this point:
+**Exercise**: Implement the `getAllTasks` method in both `TaskController` and `TaskService`.
+
+Prompt example:
+```text
+Create new method in both TastController and TaskService for "getAllTasks". 
+It will be "GET" operation and should returned List<TaskQuery>.
+```
+***Optional**: If needed, checkout proper project version at this point:
     ```bash
     git checkout https://github.com/vmplacademy/ai-workshop.git/backend/task-1
     ```
@@ -97,20 +145,40 @@ Goal of this project is to introduce you to the GitHub Copilot and its capabilit
 
 ### Generate Unit Tests using JUnit 5 and Mockito
 
-- **TaskServiceTest**: Create unit tests with mock operations and input validation.
-- **Review and Refine**: Evaluate generated test cases for accuracy.
+**TaskServiceTest**: Create unit tests with mock operations and input validation.
+
+Prompt example:
+```text
+Create TaskServiceTest, which should be unit test class based on TaskService. Provide test methods for each operation. 
+Handle proper input validation. Mock operations with TaskRepository.
+```
+**Review and Refine**: Evaluate generated test cases for accuracy.
 
 ## 7. Integration Testing
 
 ### TestContainers and Integration Tests
 
-- **TaskControllerApiTest**: Implement using `@SpringBootTest` and WebClientTest.
-- **Extend TestContainer Configuration**: Ensure comprehensive integration testing.
+**TaskControllerApiTest**: Implement using `@SpringBootTest` and WebClientTest.
+
+Prompt example:
+```text
+Create TaskApiTest, which should be integration test class based on TaskController. Provide test methods for each operation. 
+Use @SpringBootTest annotation and use WebClientTest. Import using @Import existing TestcontainersConfiguration class.
+```
+
+**Extend TestContainer Configuration**: Ensure comprehensive integration testing.
 
 ## 8. Exercise 2: Additional test cases
 
-- **Exercise**: Implement `TaskRepositoryTest` using an in-memory database (HashMap).
-- **Optional**: If needed, checkout proper project version at this point:
+**Exercise**: Implement `TaskRepositoryTest` using an in-memory database (HashMap).
+
+Prompt example:
+```text
+Create new test class for TaskRepository. It should contain unit test cases for handling database interaction. 
+Database itself should be implemented as HashMap to avoid communication with physical database.
+```
+
+**Optional**: If needed, checkout proper project version at this point:
     ```bash
     git checkout https://github.com/vmplacademy/ai-workshop.git/backend/task-2
     ```
@@ -119,13 +187,38 @@ Goal of this project is to introduce you to the GitHub Copilot and its capabilit
 
 ### Refactor Existing Code with GitHub Copilot
 
-- **Improve Code Quality**: Refactor `LegacyNotificationService` and entire `legacy` package for better readability and performance.
-- **Use Best Practices**: Ensure refactored code aligns with Java 21 standards.
+**Improve Code Quality**: Refactor `LegacyNotificationService` and entire `legacy` package for better readability and performance.
+
+Prompt examples:
+```text
+Explain in detail the role of the given class based on TaskOutOfDateService class.
+```
+```text
+Provide potential code improvements for <method_name>. Use java best practices as of Java 21. Make sure that the suggestions given improve code quality and readability.
+```
+
+**Use Best Practices**: Ensure refactored code aligns with Java 21 standards.
 
 
 ## 10. Documentation Generation
 
 ### Generate Technical Documentation
 
-- **Javadoc**: Automatically generate for `TaskController` and `TaskService`.
-- **README.md**: Create comprehensive project documentation using GitHub Copilot.
+**Javadoc**: Automatically generate for `TaskController` and `TaskService`.
+
+**README.md**: Create comprehensive project documentation using GitHub Copilot.
+
+Prompt examples:
+```text
+Create simple project documentation as README.md based on already existing Javadoc documentation in TaskController. 
+Add information about used technologies such as Spring Boot 3.x, PostgreSQL, testcontainers. 
+Provide different sections with proper headers as "Main project goal", "Used technologies", "How to start it?". 
+Use markdown format.
+```
+```text
+Provide suggestions what could be also included in such a README.md?
+```
+
+## * Have fun!
+
+Most importantly, have fun and enjoy the workshop! If you have any questions or need assistance, feel free to ask. We are here to help you! 🚀
