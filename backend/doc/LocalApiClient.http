@@ -11,6 +11,9 @@ Content-Type: application/json
 ### Get a task by ID
 GET http://localhost:8080/api/tasks/1
 
+### Get all tasks
+GET http://localhost:8080/api/tasks
+
 ### Update a task
 PUT http://localhost:8080/api/tasks/1
 Content-Type: application/json

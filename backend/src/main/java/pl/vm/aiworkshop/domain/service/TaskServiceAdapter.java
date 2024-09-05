@@ -10,6 +10,7 @@ import pl.vm.aiworkshop.dto.CreateTaskCommand;
 import pl.vm.aiworkshop.dto.TaskQuery;
 import pl.vm.aiworkshop.dto.UpdateTaskCommand;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -60,6 +61,13 @@ public class TaskServiceAdapter implements TaskService {
     }
 
     @Override
+    public List<TaskQuery> getAll() {
+        return taskRepository.findAll().stream()
+                .map(this::toTaskQuery)
+                .toList();
+    }
+
+    @Override
     public Optional<TaskQuery> update(Long id, UpdateTaskCommand command) {
 
         if (StringUtils.isEmpty(command.taskName()) || Objects.isNull(command.status())) {
@@ -81,7 +89,6 @@ public class TaskServiceAdapter implements TaskService {
 
         return taskEntity;
     }
-
 
     @Override
     public boolean delete(Long id) {

@@ -16,6 +16,7 @@ import pl.vm.aiworkshop.dto.CreateTaskCommand;
 import pl.vm.aiworkshop.dto.TaskQuery;
 import pl.vm.aiworkshop.dto.UpdateTaskCommand;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -45,6 +46,13 @@ public class TaskController {
         Optional<TaskQuery> taskQuery = taskService.get(id);
 
         return ResponseEntity.of(taskQuery);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<TaskQuery>> getAll() {
+        List<TaskQuery> tasks = taskService.getAll();
+
+        return ResponseEntity.ok(tasks);
     }
 
     @PutMapping("/{id}")
