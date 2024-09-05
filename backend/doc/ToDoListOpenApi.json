@@ -46,6 +46,9 @@
         }
        }
       }
+     },
+     "400": {
+      "description": "Task cannot be created"
      }
     }
    }
