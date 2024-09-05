@@ -1,16 +1,11 @@
 package pl.vm.aiworkshop.api;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.context.annotation.Import;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.test.web.reactive.server.WebTestClient;
 import pl.vm.aiworkshop.TestcontainersConfiguration;
 import pl.vm.aiworkshop.domain.model.TaskEntity;
 import pl.vm.aiworkshop.domain.model.TaskStatus;
@@ -30,16 +25,53 @@ class TaskControllerTest {
     private static final String API_TASKS = "/api/tasks";
 
     @Autowired
-    private TestRestTemplate restTemplate;
+    private WebTestClient webTestClient;
 
     @Autowired
     private TaskRepository taskRepository;
 
-    private TaskEntity taskEntity;
+    @Test
+    void createTask() {
+        // given
+        CreateTaskCommand command = CreateTaskCommand.builder()
+                .taskName("New Task")
+                .dueDate(LocalDateTime.of(2023, 12, 10, 10, 0))
+                .description("New Task Description")
+                .build();
 
-    @BeforeEach
-    void setUp() {
-        taskEntity = taskRepository.save(
+        // when & then
+        webTestClient.post()
+                .uri(API_TASKS)
+                .bodyValue(command)
+                .exchange()
+                .expectStatus().isEqualTo(HttpStatus.CREATED)
+                .expectBody(TaskQuery.class)
+                .value(task -> {
+                    assertThat(task).isNotNull();
+                    assertThat(task.taskName()).isEqualTo("New Task");
+                    assertThat(task.status()).isEqualTo(TaskStatus.CREATED.name());
+                });
+    }
+
+    @Test
+    void getTask() {
+        // given
+        Long taskId = saveTaskEntity().getId();
+
+        // when & then
+        webTestClient.get()
+                .uri(API_TASKS + "/" + taskId)
+                .exchange()
+                .expectStatus().isEqualTo(HttpStatus.OK)
+                .expectBody(TaskQuery.class)
+                .value(task -> {
+                    assertThat(task).isNotNull();
+                    assertThat(task.id()).isEqualTo(taskId);
+                });
+    }
+
+    private TaskEntity saveTaskEntity() {
+        return taskRepository.save(
                 new TaskEntity(
                         null,
                         "Task 1",
@@ -51,52 +83,26 @@ class TaskControllerTest {
     }
 
     @Test
-    void createTask() {
-        // given
-        CreateTaskCommand command = CreateTaskCommand.builder()
-                .taskName("New Task")
-                .dueDate(LocalDateTime.of(2023, 12, 10, 10, 0))
-                .description("New Task Description")
-                .build();
-
-        // when
-        ResponseEntity<TaskQuery> response = restTemplate.postForEntity(API_TASKS, command, TaskQuery.class);
-
-        // then
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
-        assertThat(response.getBody()).isNotNull();
-        assertThat(response.getBody().taskName()).isEqualTo("New Task");
-        assertThat(response.getBody().status()).isEqualTo(TaskStatus.CREATED.name());
-    }
-
-    @Test
-    void getTask() {
-        // given
-        Long taskId = taskEntity.getId();
-
-        // when
-        ResponseEntity<TaskQuery> response = restTemplate.getForEntity(API_TASKS + "/" + taskId, TaskQuery.class);
-
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody()).isNotNull();
-        assertThat(response.getBody().id()).isEqualTo(taskId);
-    }
-
-    @Test
     void getAllTasks() {
-        // given & when
-        ResponseEntity<TaskQuery[]> response = restTemplate.getForEntity(API_TASKS, TaskQuery[].class);
+        // given
+        saveTaskEntity();
 
-        // then
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody()).isNotNull();
-        assertThat(response.getBody().length).isEqualTo(1);
+        // when
+        webTestClient.get()
+                .uri(API_TASKS)
+                .exchange()
+                .expectStatus().isEqualTo(HttpStatus.OK)
+                .expectBodyList(TaskQuery.class)
+                .value(tasks -> {
+                    assertThat(tasks).isNotNull();
+                    assertThat(tasks).hasSize(1);
+                });
     }
 
     @Test
     void updateTask() {
         // given
-        Long taskId = taskEntity.getId();
+        Long taskId = saveTaskEntity().getId();
 
         UpdateTaskCommand command = UpdateTaskCommand.builder()
                 .taskName("Updated Task")
@@ -105,27 +111,28 @@ class TaskControllerTest {
                 .description("Updated Description")
                 .build();
 
-        HttpHeaders headers = new HttpHeaders();
-        HttpEntity<UpdateTaskCommand> entity = new HttpEntity<>(command, headers);
-
-        // when
-        ResponseEntity<TaskQuery> response = restTemplate.exchange(API_TASKS + "/" + taskId, HttpMethod.PUT, entity, TaskQuery.class);
-
-        // then
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody()).isNotNull();
-        assertThat(response.getBody().taskName()).isEqualTo("Updated Task");
+        // when & then
+        webTestClient.put()
+                .uri(API_TASKS + "/" + taskId)
+                .bodyValue(command)
+                .exchange()
+                .expectStatus().isEqualTo(HttpStatus.OK)
+                .expectBody(TaskQuery.class)
+                .value(task -> {
+                    assertThat(task).isNotNull();
+                    assertThat(task.taskName()).isEqualTo("Updated Task");
+                });
     }
 
     @Test
     void deleteTask() {
         // given
-        Long taskId = taskEntity.getId();
+        Long taskId = saveTaskEntity().getId();
 
-        // when
-        ResponseEntity<Void> response = restTemplate.exchange(API_TASKS + "/" + taskId, HttpMethod.DELETE, null, Void.class);
-
-        // then
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
+        // when & then
+        webTestClient.delete()
+                .uri(API_TASKS + "/" + taskId)
+                .exchange()
+                .expectStatus().isEqualTo(HttpStatus.NO_CONTENT);
     }
 }
