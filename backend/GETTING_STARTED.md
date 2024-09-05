@@ -1,20 +1,56 @@
 # Workshop Agenda: GitHub Copilot and Spring Boot Integration
 
-## 1. Introduction and Environment Setup
+## 1. Getting started
 
-### 1.1 Installation and Configuration of IntelliJ IDEA
+### 1.1 Requirements
 
-- **Download and Install**: IntelliJ IDEA.
-- **Configure**: IntelliJ IDEA for Spring Boot projects.
-- **Integrate**: GitHub Copilot with IntelliJ IDEA.
+#### IDE of your choice.
+
+During the workshop, we will be using IntelliJ IDEA. You can download free Community Edition version or try 30-days trial of Ultimate from the following
+link: [IntelliJ IDEA](https://www.jetbrains.com/idea/download/).
+You can also use any other IDE with both Java and official Github Copilot support: Visual Studio or Visual Studio Code.
+
+#### Github Copilot.
+
+To install and configure Github Copilot simply follow official _Quick Start_
+documentation: [Quickstart for GitHub Copilot](https://docs.github.com/en/copilot/quickstart).
+
+**Important** be able to complete the workshop tasks, you need to have a GitHub account with enabled GitHub Copilot. There is 30-days free trial available.
+
+More information can be found on the official GitHub Copilot website: [GitHub Copilot](https://docs.github.com/en/copilot).
+
+#### Docker
+
+To lunch the application locally, as well as start integration tests, you need to have Docker installed on your machine.
+You can use [Docker Desktop](https://docs.docker.com/desktop/) or [Docker Engine](https://docs.docker.com/engine/), depending on your OS and needs.
+
+#### Java 21
+
+The project is built using Java 21. You can download the latest JDK 21 version from the official Oracle website: [Java 21](https://www.oracle.com/java/technologies/downloads/).
 
 ### 1.2 Project Setup
 
-- **Clone the Project**: From the provided GitHub repository.
-    ```bash
-    git checkout https://github.com/vmplacademy/ai-workshop.git/backend/initial
-    ```
-- **Build the Project**: Ensure successful project build for all participants.
+#### 1. Clone the Project
+
+```bash
+  git checkout https://github.com/vmplacademy/ai-workshop.git/backend/initial
+ ```
+
+#### 2. Build the Project
+
+```bash
+  cd ai-workshop/backend 
+  
+  ./mvnw clean install -DskipTests
+ ```
+
+#### 3. Run application locally
+
+```bash
+  ./mvnw spring-boot:test-run
+ ```
+
+Start the application and navigate to `http://localhost:8080/swagger-ui.html` to access the Swagger UI. If there are not any errors, you are all set.
 
 ## 2. Introduction to the Training Project
 
