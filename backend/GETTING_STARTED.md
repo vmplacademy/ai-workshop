@@ -84,19 +84,27 @@ Prompt example:
 Create "create" method using TaskService. It takes object named CreateTaskCommand as parameter. Returned type should be TaskQuery.
 ```
 
-**Delete Method**: Step-by-step guide to implementing the `delete` method.
+**Get Method**: Step-by-step guide to implementing the `get` method.
 
 Prompt example:
 ```text
-Create "delete" method using TaskService. It takes TaskId as Long as parameters. This method should be 'void'.
-
+Create "get" method using TaskService. It takes TaskId as Long as parameters. Returned type should be TaskQuery.
 ```
+
 **Update Method**: Step-by-step guide to implementing the `update` method.
 
 Prompt example:
 ```text
 Create "update" method using TaskService. It takes object named UpdateTaskCommand as parameter. Returned type should be TaskQuery.
 ```
+
+**Delete Method**: Step-by-step guide to implementing the `delete` method.
+
+Prompt example:
+```text
+Create "delete" method using TaskService. It takes TaskId as Long as parameters. This method should be 'void'.
+```
+
 ## 3. Service Layer Implementation
 
 **CalculatorService**: Implement `TaskServiceAdapter` with Spring’s `@Service` annotation.
@@ -125,6 +133,15 @@ Provide all relevant columns as String: "name", TaskStatus (enum): "status". Add
 Prompt example:
 ```text
 Create TaskRepository, which extends JpaRepository based on TaskEntity.
+```
+
+### Use TaskRepository in TaskService
+
+**TaskService**: Use `TaskRepository` and implement CRUD operations.
+
+Prompt example:
+```text
+In TaskService use injected TaskRepository to implement CRUD operations.
 ```
 
 ## 5. Exercise 1: New controller's method

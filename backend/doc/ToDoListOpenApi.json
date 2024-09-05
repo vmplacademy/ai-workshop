@@ -23,12 +23,15 @@
          "taskName": {
           "type": "string"
          },
-         "plannedDate": {
+         "dueDate": {
           "type": "string",
           "format": "date-time"
+         },
+         "description": {
+          "type": "string"
          }
         },
-        "required": ["taskName", "plannedDate"]
+        "required": ["taskName", "dueDate"]
        }
       }
      }
@@ -48,8 +51,8 @@
    }
   },
   "/tasks/{id}": {
-   "delete": {
-    "summary": "Remove a task",
+   "get": {
+    "summary": "Get a task by ID",
     "parameters": [
      {
       "name": "id",
@@ -61,8 +64,15 @@
      }
     ],
     "responses": {
-     "204": {
-      "description": "Task removed successfully"
+     "200": {
+      "description": "Task retrieved successfully",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/TaskQuery"
+        }
+       }
+      }
      },
      "404": {
       "description": "Task not found"
@@ -91,13 +101,16 @@
          "taskName": {
           "type": "string"
          },
-         "plannedDate": {
+         "dueDate": {
           "type": "string",
           "format": "date-time"
          },
          "status": {
           "type": "string",
           "enum": ["CREATED", "IN_PROGRESS", "DONE"]
+         },
+         "description": {
+          "type": "string"
          }
         }
        }
@@ -119,6 +132,27 @@
       "description": "Task not found"
      }
     }
+   },
+   "delete": {
+    "summary": "Remove a task",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer"
+      }
+     }
+    ],
+    "responses": {
+     "204": {
+      "description": "Task removed successfully"
+     },
+     "404": {
+      "description": "Task not found"
+     }
+    }
    }
   }
  },
@@ -133,13 +167,16 @@
      "taskName": {
       "type": "string"
      },
-     "plannedDate": {
+     "dueDate": {
       "type": "string",
       "format": "date-time"
      },
      "status": {
       "type": "string",
       "enum": ["CREATED", "IN_PROGRESS", "DONE"]
+     },
+     "description": {
+      "type": "string"
      }
     }
    }
