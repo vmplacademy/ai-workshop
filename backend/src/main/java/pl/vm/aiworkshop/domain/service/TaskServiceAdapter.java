@@ -68,13 +68,12 @@ public class TaskServiceAdapter implements TaskService {
 
         return taskRepository.findById(id)
                 .map(taskEntity -> {
-                    TaskEntity updatedEntity = toTaskEntity(command);
+                    TaskEntity updatedEntity = update(taskEntity, command);
                     return toTaskQuery(updatedEntity);
                 });
     }
 
-    private TaskEntity toTaskEntity(UpdateTaskCommand command) {
-        TaskEntity taskEntity = new TaskEntity();
+    private TaskEntity update(TaskEntity taskEntity, UpdateTaskCommand command) {
         taskEntity.setTaskName(command.taskName());
         taskEntity.setDueDate(command.dueDate());
         taskEntity.setStatus(TaskStatus.valueOf(command.status()));
