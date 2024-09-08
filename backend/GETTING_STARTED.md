@@ -187,12 +187,12 @@ Use @SpringBootTest annotation and use WebClientTest. Import using @Import exist
 
 ## 8. Exercise 2: Additional test cases
 
-**Exercise**: Implement `TaskRepositoryTest` using an in-memory database (HashMap).
+**Exercise**: Implement `TaskRepositoryTest` for handling database interaction.
 
 Prompt example:
 ```text
 Create new test class for TaskRepository. It should contain unit test cases for handling database interaction. 
-Database itself should be implemented as HashMap to avoid communication with physical database.
+It should use @DataJpaTest annotation. Add also dependency for H2 database for tests. 
 ```
 
 **Optional**: If needed, checkout proper project version at this point:
