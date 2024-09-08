@@ -26,6 +26,7 @@ public class TaskController {
 
     private final TaskService taskService;
 
+
     @PostMapping
     public ResponseEntity<TaskQuery> create(@RequestBody CreateTaskCommand command) {
         Optional<TaskQuery> taskQuery = taskService.create(command);
