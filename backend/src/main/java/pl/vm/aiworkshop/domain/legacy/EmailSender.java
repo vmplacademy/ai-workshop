@@ -1,11 +1,14 @@
 package pl.vm.aiworkshop.domain.legacy;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
-public class EmailSender {
+public class EmailSender implements NotificationSender {
 
-    void sendEmail(String message) {
-        System.out.println("Sending email with message: " + message);
+    @Override
+    public void send(String message) {
+        log.info("Sending email with message: {}", message);
     }
 }
