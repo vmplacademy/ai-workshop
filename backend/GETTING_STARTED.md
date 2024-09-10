@@ -33,10 +33,19 @@ The project is built using Java 21. You can download the latest JDK 21 version f
 #### 1. Clone the Project
 
 ```bash
-  git checkout https://github.com/vmplacademy/ai-workshop.git/backend/initial
+  git clone https://github.com/vmplacademy/ai-workshop.git
+  
  ```
 
-#### 2. Build the Project
+#### 2. Checkout proper branch
+
+```bash
+  cd ai-workshop 
+  
+  git checkout backend/initial
+ ```
+
+#### 3. Build the Project
 
 ```bash
   cd ai-workshop/backend 
@@ -44,7 +53,7 @@ The project is built using Java 21. You can download the latest JDK 21 version f
   ./mvnw clean install -DskipTests
  ```
 
-#### 3. Run application locally
+#### 4. Run application locally
 
 ```bash
   ./mvnw spring-boot:test-run
