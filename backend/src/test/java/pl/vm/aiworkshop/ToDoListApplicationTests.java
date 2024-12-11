@@ -11,4 +11,8 @@ class ToDoListApplicationTests {
     @Test
     void contextLoads() {
     }
+
+    @Test
+    void test() {
+    }
 }
