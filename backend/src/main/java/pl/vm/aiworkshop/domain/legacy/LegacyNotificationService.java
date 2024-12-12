@@ -1,34 +1,33 @@
 package pl.vm.aiworkshop.domain.legacy;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Map;
+import java.util.Objects;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-/**
- * Service for sending notifications.
- * <p></p>
- * It serves as an example of an existing, legacy service that can be used in the application.
- */
 @Service
 public class LegacyNotificationService {
 
-    @Autowired
-    private EmailSender emailSender;
+    private static final Logger logger = LoggerFactory.getLogger(LegacyNotificationService.class);
 
-    @Autowired
-    private SmsSender smsSender;
+    private final Map<NotificationType, NotificationSender> notificationSenders;
 
-    @Autowired
-    private LetterSender letterSender;
+    public LegacyNotificationService(Map<NotificationType, NotificationSender> notificationSenders) {
+        this.notificationSenders = notificationSenders;
+    }
 
-    void sendNotification(String message, String type) {
-        if (type.contains("email")) {
-            emailSender.sendEmail(message);
-        } else if (type.contains("sms")) {
-            smsSender.sendSms(message);
-        } else if (type.contains("letter")) {
-            letterSender.sendPost(message);
+    public void sendNotification(String message, NotificationType type) {
+        Objects.requireNonNull(message, "Message cannot be null");
+        Objects.requireNonNull(type, "Notification type cannot be null");
+
+        NotificationSender sender = notificationSenders.get(type);
+        if (sender != null) {
+            sender.send(message);
         } else {
-            System.out.println("Unknown notification type");
+            logger.error("Unknown notification type: {}", type);
+            throw new IllegalArgumentException("Unknown notification type: " + type);
         }
     }
 }

@@ -1,11 +1,11 @@
 package pl.vm.aiworkshop.domain.legacy;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
-public class EmailSender {
-
-    void sendEmail(String message) {
+@Component
+public class EmailSender implements NotificationSender {
+    @Override
+    public void send(String message) {
         System.out.println("Sending email with message: " + message);
     }
 }
