@@ -3,6 +3,8 @@ package pl.vm.aiworkshop.domain.service;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import pl.vm.aiworkshop.domain.legacy.NotificationService;
+import pl.vm.aiworkshop.domain.legacy.NotificationType;
 import pl.vm.aiworkshop.domain.model.TaskEntity;
 import pl.vm.aiworkshop.domain.model.TaskStatus;
 import pl.vm.aiworkshop.domain.repository.TaskRepository;
@@ -10,6 +12,7 @@ import pl.vm.aiworkshop.dto.CreateTaskCommand;
 import pl.vm.aiworkshop.dto.TaskQuery;
 import pl.vm.aiworkshop.dto.UpdateTaskCommand;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -19,6 +22,7 @@ import java.util.Optional;
 public class TaskServiceAdapter implements TaskService {
 
     private final TaskRepository taskRepository;
+    private final NotificationService notificationService;
 
     @Override
     public Optional<TaskQuery> create(CreateTaskCommand command) {
@@ -30,6 +34,11 @@ public class TaskServiceAdapter implements TaskService {
         TaskEntity taskEntity = toTaskEntity(command);
 
         TaskEntity savedEntity = taskRepository.save(taskEntity);
+
+        // Send SMS notification when task is created
+        String message = String.format("Task %s has been created. Creation date: %s", 
+                savedEntity.getTaskName(), LocalDateTime.now());
+        notificationService.sendNotification(message, NotificationType.SMS);
 
         return Optional.of(toTaskQuery(savedEntity));
     }
@@ -77,6 +86,21 @@ public class TaskServiceAdapter implements TaskService {
         return taskRepository.findById(id)
                 .map(taskEntity -> {
                     TaskEntity updatedEntity = update(taskEntity, command);
+
+                    // Send email notification when task is updated to IN_PROGRESS status
+                    if (updatedEntity.getStatus() == TaskStatus.IN_PROGRESS) {
+                        String message = String.format("Task %s has been updated. Update date: %s. Current status: %s", 
+                                updatedEntity.getTaskName(), LocalDateTime.now(), updatedEntity.getStatus());
+                        notificationService.sendNotification(message, NotificationType.EMAIL);
+                    }
+
+                    // Send email notification when task is updated to DONE status
+                    if (updatedEntity.getStatus() == TaskStatus.DONE) {
+                        String message = String.format("Task %s has been done. Keep it going!", 
+                                updatedEntity.getTaskName());
+                        notificationService.sendNotification(message, NotificationType.EMAIL);
+                    }
+
                     return toTaskQuery(updatedEntity);
                 });
     }

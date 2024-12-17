@@ -7,6 +7,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import pl.vm.aiworkshop.domain.legacy.NotificationService;
 import pl.vm.aiworkshop.domain.model.TaskEntity;
 import pl.vm.aiworkshop.domain.model.TaskStatus;
 import pl.vm.aiworkshop.domain.repository.TaskRepository;
@@ -20,6 +21,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -27,6 +29,9 @@ class TaskServiceAdapterTest {
 
     @Mock
     private TaskRepository taskRepository;
+
+    @Mock
+    private NotificationService notificationService;
 
     @InjectMocks
     private TaskServiceAdapter taskServiceAdapter;
@@ -60,6 +65,7 @@ class TaskServiceAdapterTest {
             // then
             assertThat(result).isPresent();
             assertThat(result.get().id()).isEqualTo(1L);
+            verify(notificationService).sendNotification(any(String.class), any());
         }
 
         @Test
@@ -181,6 +187,7 @@ class TaskServiceAdapterTest {
             // then
             assertThat(result).isPresent();
             assertThat(result.get().taskName()).isEqualTo("Updated Task");
+            verify(notificationService).sendNotification(any(String.class), any());
         }
 
         @Test
