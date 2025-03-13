@@ -1,35 +1,29 @@
 package pl.vm.aiworkshop.domain.legacy;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * Service for sending notifications.
- * <p></p>
- * It serves as an example of an existing, legacy service that can be used in the application.
- */
+import lombok.RequiredArgsConstructor;
+import pl.vm.aiworkshop.domain.notification.EmailSender;
+import pl.vm.aiworkshop.domain.notification.LetterSender;
+import pl.vm.aiworkshop.domain.notification.NotificationSender;
+import pl.vm.aiworkshop.domain.notification.SmsSender;
+
 @Service
+@RequiredArgsConstructor
 public class LegacyNotificationService {
 
-    @Autowired
-    private EmailSender emailSender;
+    private final SmsSender smsSender;
+    private final EmailSender emailSender;
+    private final LetterSender letterSender;
 
-    @Autowired
-    private SmsSender smsSender;
-
-    @Autowired
-    private LetterSender letterSender;
-
-    void sendNotification(String message, String type) {
-        if (type.contains("email")) {
-            emailSender.sendEmail(message);
-        } else if (type.contains("sms")) {
-            smsSender.sendSms(message);
-        } else if (type.contains("letter")) {
-            letterSender.sendPost(message);
-        } else {
-            System.out.println("Unknown notification type");
-        }
+    public void send(String message, String type) {
+        NotificationSender sender = switch (type) {
+            case "SMS" -> smsSender;
+            case "Email" -> emailSender;
+            case "Letter" -> letterSender;
+            default -> throw new IllegalArgumentException("Unknown notification type: " + type + ". Please provide a valid notification type.");
+        };
+        sender.send(message);
     }
 }
 

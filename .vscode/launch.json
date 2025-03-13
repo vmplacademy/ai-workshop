@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ToDoListLocalApplication<ai-workshop>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "pl.vm.aiworkshop.ToDoListLocalApplication",
+            "projectName": "ai-workshop",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

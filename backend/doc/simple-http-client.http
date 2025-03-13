@@ -1,0 +1,26 @@
+### Create a new task
+POST http://localhost:8080/api/tasks
+Content-Type: application/json
+
+{
+  "taskName": "New Task 2",
+  "dueDate": "2023-12-31T23:59:59",
+  "description": "This is a new task"
+}
+
+### Get a task by ID
+GET http://localhost:8080/api/tasks/1
+
+### Update a task by ID
+PUT http://localhost:8080/api/tasks/1
+Content-Type: application/json
+
+{
+  "taskName": "Updated Task 1",
+  "dueDate": "2023-12-31T23:59:59",
+  "status": "IN_PROGRESS",
+  "description": "This task has been updated"
+}
+
+### Delete a task by ID
+DELETE http://localhost:8080/api/tasks/1
