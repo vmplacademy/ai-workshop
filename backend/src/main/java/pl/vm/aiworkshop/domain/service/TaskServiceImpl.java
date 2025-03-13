@@ -2,6 +2,7 @@ package pl.vm.aiworkshop.domain.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import pl.vm.aiworkshop.domain.legacy.LegacyNotificationService;
 import pl.vm.aiworkshop.domain.model.TaskEntity;
 import pl.vm.aiworkshop.domain.model.TaskStatus;
 import pl.vm.aiworkshop.domain.repository.TaskRepository;
@@ -17,6 +18,7 @@ public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository taskRepo;
     private final TaskRepository taskRepository;
+    private final LegacyNotificationService legacyNotificationService;
 
     @Override
     public Optional<TaskQuery> createTask(CreateTaskCommand command) {
@@ -61,6 +63,9 @@ public class TaskServiceImpl implements TaskService {
             taskEntity.setDueDate(command.dueDate());
             taskEntity.setDescription(command.description());
             taskEntity.setStatus(command.status());
+            if (command.status() == TaskStatus.DONE) {
+                legacyNotificationService.send("Task " + taskEntity.getTaskName() + " is completed.", "Email");
+            }
             return map(taskEntity);
         });
     }

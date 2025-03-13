@@ -18,6 +18,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import pl.vm.aiworkshop.domain.legacy.LegacyNotificationService;
 import pl.vm.aiworkshop.domain.model.TaskEntity;
 import pl.vm.aiworkshop.domain.model.TaskStatus;
 import pl.vm.aiworkshop.domain.repository.TaskRepository;
@@ -30,6 +31,9 @@ class TaskServiceImplTest {
 
     @Mock
     private TaskRepository taskRepository;
+
+    @Mock
+    private LegacyNotificationService legacyNotificationService;
 
     @InjectMocks
     private TaskServiceImpl taskService;
@@ -166,6 +170,27 @@ class TaskServiceImplTest {
 
             // then
             assertFalse(result.isPresent());
+        }
+
+        @Test
+        void should_send_email_notification_when_task_status_is_done() {
+            // given
+            TaskEntity taskEntity = new TaskEntity();
+            taskEntity.setId(1L);
+            taskEntity.setTaskName("Task 1");
+            taskEntity.setDueDate(LocalDateTime.parse("2023-12-31T23:59:59"));
+            taskEntity.setStatus(TaskStatus.CREATED);
+            taskEntity.setDescription("Description");
+
+            UpdateTaskCommand command = new UpdateTaskCommand("Task 1", LocalDateTime.parse("2023-12-31T23:59:59"), TaskStatus.DONE, "Description");
+
+            when(taskRepository.findById(1L)).thenReturn(Optional.of(taskEntity));
+
+            // when
+            taskService.updateTask(1L, command);
+
+            // then
+            verify(legacyNotificationService, times(1)).send("Task Task 1 is completed.", "Email");
         }
     }
 
