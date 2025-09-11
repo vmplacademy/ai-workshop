@@ -1,0 +1,66 @@
+# Global .gitignore for ai-workshop repository
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Icon must end with two \r
+Icon
+
+# Trashes
+.Trashes
+
+# macOS metadata
+.Spotlight-V100
+.fseventsd
+
+# Windows system files
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux system files
+*~
+.nfs*
+
+# Editor swap/backup files
+*.swp
+*.swo
+*.bak
+*.tmp
+*.temp
+
+# VS Code global
+.vscode/
+
+# JetBrains IDEs global
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Node.js global
+node_modules/
+
+# Python global
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Logs
+*.log
+
+# Coverage
+coverage/
+*.lcov
+
+# Test output
+/test-output/
+
+# By convention, framework-specific .gitignore files are in subfolders
