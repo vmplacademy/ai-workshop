@@ -31,13 +31,13 @@ This repository is your comprehensive guide to mastering **GitHub Copilot** thro
 ```plaintext
 .
 ├── spring-boot/         # Java 21 + Spring Boot 3.5.5 backend
-│   ├── GETTING_STARTED.md    # 📋 Step-by-step Copilot workshop
+│   ├── README.md             # 📋 Complete project documentation
 │   └── src/main/java/...     # 🎯 Contract-first API implementation
 ├── dotnet/              # .NET 9.0 backend (Clean Architecture)
-│   ├── GETTING_STARTED.md    # 📋 Copilot-guided development
-│   └── src/ToDoList.Api/...  # 🎯 Interface-based layer contracts
+│   ├── README.md             # 📋 Complete project documentation
+│   └── src/...               # 🎯 Interface-based layer contracts
 ├── react/               # React + Vite + TypeScript frontend  
-│   ├── GETTING_STARTED.md    # 📋 AI-assisted component development
+│   ├── README.md             # 📋 Complete project documentation
 │   └── src/components/...    # 🎯 Modern React patterns
 ├── docs/                # 📖 API documentation & OpenAPI specs
 │   └── ToDoListOpenApi.json  # 🔗 Source of truth for API contracts
@@ -49,7 +49,7 @@ This repository is your comprehensive guide to mastering **GitHub Copilot** thro
 
 **🔑 Each directory includes**:
 - Framework-specific `.gitignore` and `README.md`
-- `GETTING_STARTED.md` with Copilot-driven workshop phases
+- Complete documentation with Copilot-driven workshop phases
 - Real-world code examples and best practices
 
 ---
@@ -120,14 +120,17 @@ cat docs/ToDoListOpenApi.json  # Review the API contract
 ### **2. Choose Your Adventure** 🎪
 | Path | Description | Time | Skill Level |
 |------|-------------|------|-------------|
-| 🟢 **Java Path** | `spring-boot/GETTING_STARTED.md` | 2-3 hours | Beginner-Friendly |
-| 🔵 **.NET Path** | `dotnet/GETTING_STARTED.md` | 2-3 hours | Intermediate |
-| 🟡 **React Path** | `react/GETTING_STARTED.md` | 1-2 hours | Beginner-Friendly |
+| 🟢 **Java Path** | `spring-boot/README.md` | 2-3 hours | Beginner-Friendly |
+| 🔵 **.NET Path** | `dotnet/README.md` | 2-3 hours | Intermediate |
+| 🟡 **React Path** | `react/README.md` | 1-2 hours | Beginner-Friendly |
 | 🔴 **Full-Stack** | All three paths | 4-6 hours | Advanced |
 
 ### **3. Activate Copilot Power** ⚡
-Each `GETTING_STARTED.md` includes:
+Each project `README.md` includes:
 - 📋 Copilot prompts for every step
+- 🎯 Context-specific code generation
+- 🧪 AI-assisted testing strategies
+- 📖 Documentation automation
 - 🎯 Context-specific code generation
 - 🧪 AI-assisted testing strategies
 - 📖 Documentation automation
@@ -294,4 +297,4 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 
 **🚀 Ready to supercharge your coding with AI? Choose your path and let's get started!** 
 
-[🟢 **Start with Java/Spring Boot**](spring-boot/GETTING_STARTED.md) | [🔵 **Start with .NET**](dotnet/GETTING_STARTED.md) | [🟡 **Start with React**](react/GETTING_STARTED.md)
+[🟢 **Start with Java/Spring Boot**](spring-boot/README.md) | [🔵 **Start with .NET**](dotnet/README.md) | [🟡 **Start with React**](react/README.md)

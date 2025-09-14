@@ -235,15 +235,74 @@ This workshop is designed to work seamlessly with **GitHub Copilot**:
 
 ## 🔧 **Prerequisites**
 
-- ✅ [.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
-- ✅ [Visual Studio Code](https://code.visualstudio.com/) with [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)
-- ✅ [GitHub Copilot extension](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
+### **Required Software**
+- ✅ [.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) - Latest .NET version
+- ✅ [Visual Studio Code](https://code.visualstudio.com/) - Primary IDE for this workshop
 - ✅ [PostgreSQL](https://www.postgresql.org/download/) (for later phases)
 - ✅ [Docker](https://www.docker.com/get-started) (for Testcontainers)
 
+### **VS Code Extensions for .NET Development**
+
+#### **Essential Extensions (Required)**
+
+**🎯 C# Dev Kit** - `ms-dotnettools.csdevkit`
+- Complete C# development experience in VS Code
+- Includes IntelliSense, debugging, and project management
+- Built on the same foundation as Visual Studio
+- **Installation**: [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)
+
+The **C# Dev Kit** automatically includes:
+- **C# Extension** (`ms-dotnettools.csharp`) - Base language services
+- **IntelliCode for C# Dev Kit** (optional) - AI-powered development experience
+
+#### **GitHub Copilot Extensions (Workshop Focus)**
+
+**🤖 GitHub Copilot** - `GitHub.copilot`
+- AI-powered code completions and suggestions
+- **Essential for this workshop**
+- **Installation**: [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
+
+**💬 GitHub Copilot Chat** - `GitHub.copilot-chat`
+- Interactive AI assistance and code explanations
+- **Installation**: [GitHub Copilot Chat](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat)
+
+#### **Alternative: .NET Extension Pack (Complete Package)**
+
+If you prefer to install everything at once:
+
+**📦 .NET Extension Pack** - `ms-dotnettools.vscode-dotnet-pack`
+- Includes C# Dev Kit + additional tools
+- **Installation**: [.NET Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.vscode-dotnet-pack)
+
+#### **Quick Setup Commands**
+
+```bash
+# Install essential extensions via command line
+code --install-extension ms-dotnettools.csdevkit
+code --install-extension GitHub.copilot
+code --install-extension GitHub.copilot-chat
+
+# OR install the complete pack
+code --install-extension ms-dotnettools.vscode-dotnet-pack
+```
+
+#### **Verify Installation**
+
+After installing extensions, verify your setup:
+
+```bash
+# Check .NET SDK version
+dotnet --version
+
+# Verify VS Code can find .NET
+dotnet --info
+```
+
+**Expected output**: .NET version should show 9.0.x or later
+
 ## 🐛 **Troubleshooting**
 
-### **Common Issues:**
+### **Common Issues**
 
 **API won't start?**
 ```bash
@@ -259,7 +318,29 @@ dotnet run
 lsof -ti:5025 | xargs kill -9
 ```
 
-**Need help?** Check the [GETTING_STARTED.md](GETTING_STARTED.md) for detailed troubleshooting.
+**HTTPS redirect warning?**
+This is normal in development mode - the warning is disabled for local development.
+
+### **VS Code .NET Setup Issues**
+
+**C# IntelliSense not working?**
+1. Ensure C# Dev Kit extension is installed and enabled
+2. Reload VS Code window: `Ctrl+Shift+P` → "Developer: Reload Window"
+3. Check VS Code status bar for .NET SDK version
+
+**Missing "Required assets to build and debug"?**
+- When VS Code asks to add required assets, click **"Yes"**
+- This creates `.vscode/launch.json` and `.vscode/tasks.json`
+
+**GitHub Copilot not working?**
+1. Verify you have an active GitHub Copilot subscription
+2. Sign in to GitHub in VS Code: `Ctrl+Shift+P` → "GitHub: Sign In"
+3. Check Copilot status in VS Code status bar
+
+**Project not loading in VS Code?**
+- Open the `dotnet/src` folder (containing `TodoApp.csproj`)
+- VS Code should show "Restore" notification - click it
+- Wait for OmniSharp to finish loading (status bar indicator)
 
 ## 📖 **Additional Resources**
 
