@@ -43,14 +43,6 @@ Each framework follows specific guidelines and best practices detailed in dedica
 - **Database**: PostgreSQL with Entity Framework Core
 - **Documentation**: Swashbuckle.AspNetCore (Swagger)
 
-#### **Node.js** (`framework=nodejs`)
-📖 **Full Guidelines**: [Node.js Instructions](../instructions/nodejs.instructions.md)
-- **Technology Stack**: Node.js 20, Express.js, TypeScript, PostgreSQL
-- **Architecture**: MVC pattern with controllers, services, repositories
-- **Testing**: Jest, Supertest for API testing
-- **Database**: PostgreSQL with Prisma or TypeORM
-- **Documentation**: Swagger/OpenAPI with express-swagger-generator
-
 ### 🚫 **Universal Backend Constraints**
 1. **Contract-First Development**: Start with OpenAPI specification, then implement
 2. **Step-by-Step Implementation**: Each phase requires user confirmation before proceeding
@@ -179,4 +171,3 @@ All backend implementations should follow this structure:
 **Usage Examples**:
 - `/setup-project framework=spring-boot` - Setup Spring Boot backend project
 - `/setup-project framework=dotnet` - Setup .NET Web API backend project  
-- `/setup-project framework=nodejs` - Setup Node.js Express backend project

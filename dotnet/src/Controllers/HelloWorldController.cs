@@ -1,25 +1,26 @@
 using Microsoft.AspNetCore.Mvc;
+using TodoApp.Dtos;
 
-namespace TodoApp.Controllers;
-
-[ApiController]
-[Route("api/hello-world")]
-[Produces("application/json")]
-public class HelloWorldController : ControllerBase
+namespace TodoApp.Controllers
 {
-    [HttpGet]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    public IActionResult Get()
+    [ApiController]
+    [Route("api/hello-world")]
+    [Produces("application/json")]
+    public class HelloWorldController : ControllerBase
     {
-        var response = new
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public IActionResult Get()
         {
-            Message = "Hello, World from .NET 9 API!",
-            Timestamp = DateTime.UtcNow,
-            Version = "1.0.0",
-            Controller = "HelloWorldController",
-            Environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"
-        };
+            var response = new HelloWorldResponse(
+                "Hello, World from .NET 9 API!",
+                DateTime.UtcNow,
+                "1.0.0",
+                nameof(HelloWorldController),
+                Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"
+            );
 
-        return Ok(response);
+            return Ok(response);
+        }
     }
 }

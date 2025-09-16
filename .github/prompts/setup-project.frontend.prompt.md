@@ -40,24 +40,6 @@ Each framework follows specific guidelines and best practices detailed in dedica
 - **Routing**: Angular Router
 - **HTTP Client**: Angular HttpClient
 
-#### **Vue** (`framework=vue`)
-📖 **Full Guidelines**: [Vue Instructions](../instructions/vue.instructions.md)
-- **Technology Stack**: Vue 3, Vite, TypeScript, Vuetify or PrimeVue
-- **Architecture**: Component-based with Composition API
-- **Testing**: Vitest, Vue Testing Library
-- **State Management**: Pinia
-- **Routing**: Vue Router v4
-- **HTTP Client**: Axios
-
-#### **Svelte** (`framework=svelte`)
-📖 **Full Guidelines**: [Svelte Instructions](../instructions/svelte.instructions.md)
-- **Technology Stack**: SvelteKit, TypeScript, Tailwind CSS
-- **Architecture**: Component-based with stores
-- **Testing**: Vitest, Svelte Testing Library
-- **State Management**: Svelte stores
-- **Routing**: SvelteKit routing
-- **HTTP Client**: Fetch API or Axios
-
 ### 🚫 **Universal Frontend Constraints**
 1. **Backend Agnostic**: Must work with Spring Boot, .NET, and Node.js backends
 2. **Follow framework-specific conventions** and best practices
@@ -182,6 +164,4 @@ const API_CONFIGS: Record<string, ApiConfig> = {
 
 **Usage Examples**:
 - `/setup-project framework=react` - Setup React frontend project
-- `/setup-project framework=angular` - Setup Angular frontend project  
-- `/setup-project framework=vue` - Setup Vue.js frontend project
-- `/setup-project framework=svelte` - Setup SvelteKit frontend project
+- `/setup-project framework=angular` - Setup Angular frontend project

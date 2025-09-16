@@ -524,7 +524,6 @@ public class TaskService {
 ### CORS Configuration
 ```java
 @Configuration
-@EnableWebMvc
 public class CorsConfig implements WebMvcConfigurer {
     
     @Override
@@ -536,7 +535,6 @@ public class CorsConfig implements WebMvcConfigurer {
                 .allowCredentials(true);
     }
 }
-```
 
 ## Deployment Considerations
 
