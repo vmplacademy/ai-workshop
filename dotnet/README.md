@@ -33,34 +33,161 @@ Visit: `http://localhost:5025/api/hello-world` to test the API!
 - ✅ Docker (for Testcontainers)
 - ✅ Git for version control
 
-## 🎯 **What We Built in Phase 1**
 
-### **Key Features Implemented**
-- ✅ **.NET 9 Web API** with controller-based architecture
-- ✅ **OpenAPI Documentation** automatically generated
-- ✅ **Hello World Controller** for testing: `GET /api/hello-world`
-- ✅ **Clean Project Structure** with proper separation of concerns
-- ✅ **Proper .gitignore** for .NET development
-- ✅ **All NuGet Packages** for PostgreSQL, EF Core, and Testcontainers
-- ✅ **Simplified Structure** - everything directly in `src/`
 
-### **Test the API**
+## 🎪 Workshop Agenda: GitHub Copilot and .NET Integration
 
-**Test the Hello World endpoint:**
+### **Phase 1: Getting Started**
+- **Overview**: Introduction to the ToDo List application.
+- **Project Goals**: Discuss the objectives and functionality.
+
+### **Phase 2: TaskController Implementation**
+
+#### Create Controller with GitHub Copilot Chat
+
+**TaskController**: Implement `TaskController` with injected `ITaskService`.
+
+**Prompt examples:**
+```text
+We are going to create simple ToDo list application. Do not! provide any suggestions at this point. It just for context.
+We are going to implement it step by step starting with TaskController. Just wait for my next prompts.
+```
+```text
+Create TaskController with injected ITaskService as interface in ASP.NET Core as Controller for CRUD operations for ToDo application.
+Provide only empty bodies without implementations. Handle proper operations via suitable Http methods
+```
+
+#### CRUD Operations Implementation
+
+**Create Method**: Step-by-step guide to implementing the `Create` method.
+```text
+Create "Create" method using ITaskService. It takes object named CreateTaskCommand as parameter. Returned type should be TaskQuery.
+```
+
+**Get Method**: Step-by-step guide to implementing the `Get` method.
+```text
+Create "Get" method using ITaskService. It takes TaskId as long as parameter. Returned type should be TaskQuery.
+```
+
+**Update Method**: Step-by-step guide to implementing the `Update` method.
+```text
+Create "Update" method using ITaskService. It takes object named UpdateTaskCommand as parameter. Returned type should be TaskQuery.
+```
+
+**Delete Method**: Step-by-step guide to implementing the `Delete` method.
+```text
+Create "Delete" method using ITaskService. It takes TaskId as long as parameter. This method should be 'void'.
+```
+
+### **Phase 3: Service Layer Implementation**
+
+**TaskServiceAdapter**: Implement `TaskServiceAdapter` with dependency injection.
+
+**Prompt example:**
+```text
+Based on TaskController provide proper implementation for interface ITaskService as TaskServiceAdapter. It should be registered for DI.
+```
+
+### **Phase 4: Entity and Repository Setup**
+
+#### Create TaskEntity
+**TaskEntity**: Define with relevant C# attributes and EF Core configuration.
+```text
+Create TaskEntity with all relevant C# attributes for storing EF Core entity. Use table name as "t_task".
+Provide all relevant columns as string: "Name", TaskStatus (enum): "Status". Add proper data types for each column.
+```
+
+#### Create TaskRepository
+**TaskRepository**: Implement `TaskRepository` extending `IRepository<TaskEntity>` or using EF Core DbContext.
+```text
+Create TaskRepository, which extends IRepository based on TaskEntity or uses EF Core DbContext.
+```
+
+#### Use TaskRepository in TaskService
+**TaskService**: Use `TaskRepository` and implement CRUD operations.
+```text
+In TaskService use injected TaskRepository to implement CRUD operations.
+```
+
+### **Phase 5: Exercise 1 - New controller's method**
+
+**Exercise**: Implement the `GetAllTasks` method in both `TaskController` and `ITaskService`.
+```text
+Create new method in both TaskController and ITaskService for "GetAllTasks".
+It will be "GET" operation and should return List<TaskQuery>.
+```
+
+***Optional**: If needed, checkout proper project version at this point:*
 ```bash
-curl http://localhost:5025/api/hello-world
+git checkout https://github.com/vmplacademy/ai-workshop.git/dotnet/task-1
 ```
 
-**Expected Response:**
-```json
-{
-  "message": "Hello, World from .NET 9 API!",
-  "timestamp": "2024-09-14T14:30:00.0000000Z",
-  "version": "1.0.0",
-  "controller": "HelloWorldController",
-  "environment": "Development"
-}
+### **Phase 6: Unit Testing**
+
+#### Generate Unit Tests using xUnit and Moq
+**TaskServiceTests**: Create unit tests with mock operations and input validation.
+```text
+Create TaskServiceTests, which should be unit test class based on TaskService. Provide test methods for each operation.
+Handle proper input validation. Mock operations with TaskRepository.
 ```
+**Review and Refine**: Evaluate generated test cases for accuracy.
+
+### **Phase 7: Integration Testing**
+
+#### Testcontainers and Integration Tests
+**TaskControllerApiTests**: Implement using `WebApplicationFactory` and `HttpClient`.
+```text
+Create TaskApiTests, which should be integration test class based on TaskController. Provide test methods for each operation.
+Use WebApplicationFactory and HttpClient. Use Testcontainers for PostgreSQL.
+```
+**Extend TestContainer Configuration**: Ensure comprehensive integration testing.
+
+### **Phase 8: Exercise 2 - Additional test cases**
+
+**Exercise**: Implement `TaskRepositoryTests` for handling database interaction.
+```text
+Create new test class for TaskRepository. It should contain unit test cases for handling database interaction.
+It should use EF Core InMemory or Testcontainers for tests.
+```
+
+***Optional**: If needed, checkout proper project version at this point:*
+```bash
+git checkout https://github.com/vmplacademy/ai-workshop.git/dotnet/task-2
+```
+
+### **Phase 9: Code Refactoring**
+
+#### Refactor Existing Code with GitHub Copilot
+**Improve Code Quality**: Refactor `LegacyNotificationService` and entire legacy code for better readability and performance.
+
+**Prompt examples:**
+```text
+Explain in detail the role of the given class based on TaskOutOfDateService class.
+```
+```text
+Provide potential code improvements for <method_name>. Use C# best practices as of .NET 9. Make sure that the suggestions given improve code quality and readability.
+```
+**Use Best Practices**: Ensure refactored code aligns with .NET 9 standards.
+
+### **Phase 10: Documentation Generation**
+
+#### Generate Technical Documentation
+**XML Docs**: Automatically generate for `TaskController` and `ITaskService`.
+
+**README.md**: Create comprehensive project documentation using GitHub Copilot.
+
+**Prompt examples:**
+```text
+Create simple project documentation as README.md based on already existing XML documentation in TaskController.
+Add information about used technologies such as ASP.NET Core 9.x, PostgreSQL, Testcontainers.
+Provide different sections with proper headers as "Main project goal", "Used technologies", "How to start it?".
+Use markdown format.
+```
+```text
+Provide suggestions what could be also included in such a README.md?
+```
+
+---
 
 ## 🏗️ **Project Structure**
 
@@ -170,34 +297,33 @@ You now have a fully functional .NET 9 Web API with:
 
 **Next step:** Ready to implement the TodoList functionality!
 
-## 🎯 **What You'll Learn**
 
-### **Phase 1: Foundation** ✅
-- [x] .NET 9 Controller-based API setup
-- [x] Clean project structure
-- [x] NuGet package management
-- [x] GitHub Copilot integration
-- [x] HelloWorld controller with health check
+## 🎯 **Workshop Phases Checklist**
 
-### **Phase 2: Domain** (Coming Next)
-- [ ] Task entity and DTOs
-- [ ] Controller-based endpoints
-- [ ] Request validation
+### **Phase 1: Foundation**
+- [x] Set up ASP.NET Core REST API with HelloWorld controller
+- [x] Clean project structure for future expansion
+- [x] Integrate GitHub Copilot in your IDE
+
+### **Phase 2: Domain**
+- [ ] Define Task entity and DTOs (C# 13 record types)
+- [ ] Create controller endpoints for CRUD operations (empty bodies at first)
+- [ ] Add request validation (FluentValidation/DataAnnotations)
 
 ### **Phase 3: Database**
-- [ ] PostgreSQL with EF Core
-- [ ] Migrations and seeding
-- [ ] Repository pattern
+- [ ] Integrate PostgreSQL using Entity Framework Core
+- [ ] Set up EF Core migrations for schema management
+- [ ] Implement repository interfaces for data access
 
 ### **Phase 4: Business Logic**
-- [ ] Service layer implementation
-- [ ] Business rules and validation
-- [ ] Error handling patterns
+- [ ] Implement service layer for business rules
+- [ ] Add validation and error handling
+- [ ] Use Copilot to suggest/refactor business logic
 
 ### **Phase 5: Testing**
-- [ ] Unit tests with xUnit
-- [ ] Integration tests
-- [ ] Testcontainers for database testing
+- [ ] Write unit tests with xUnit and Moq
+- [ ] Add integration tests using Testcontainers for PostgreSQL
+- [ ] Ensure all layers are covered by tests
 
 ## 🛠️ **Tech Stack**
 
