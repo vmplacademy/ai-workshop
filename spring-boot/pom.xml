@@ -5,18 +5,19 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.3</version>
+        <version>3.5.5</version>
         <relativePath/>
     </parent>
     <groupId>pl.vm</groupId>
     <artifactId>ai-workshop</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>backend</name>
-    <description>Backend part of simple ToDo List application.</description>
+    <version>1.0.1</version>
+    <name>spring-boot</name>
+    <description>Spring Boot backed part of simple ToDo List application.</description>
 
     <properties>
         <java.version>21</java.version>
-        <spring.doc.version>2.6.0</spring.doc.version>
+        <spring.doc.version>2.8.13</spring.doc.version>
+        <maven.compiler.release>${java.version}</maven.compiler.release>
     </properties>
 
     <dependencies>
@@ -99,6 +100,18 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
