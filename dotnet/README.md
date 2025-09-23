@@ -1,6 +1,6 @@
 # .NET 9 TodoApp Workshop
 
-![.NET 9](https://img.shields.io/badge/.NET-9.0-blue.svg)
+![.NET 8](https://img.shields.io/badge/.NET-8.0-blue.svg)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Ready-green.svg)
 ![Testcontainers](https://img.shields.io/badge/Testcontainers-Configured-orange.svg)
 ![GitHub Copilot](https://img.shields.io/badge/GitHub_Copilot-Ready-purple.svg)
