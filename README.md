@@ -33,7 +33,7 @@ This repository is your comprehensive guide to mastering **GitHub Copilot** thro
 ├── spring-boot/         # Java 21 + Spring Boot 3.5.5 backend
 │   ├── README.md             # 📋 Complete project documentation
 │   └── src/main/java/...     # 🎯 Contract-first API implementation
-├── dotnet/              # .NET 9.0 backend (Clean Architecture)
+├── dotnet/              # .NET 8.0 backend (Clean Architecture)
 │   ├── README.md             # 📋 Complete project documentation
 │   └── src/...               # 🎯 Interface-based layer contracts
 ├── react/               # React + Vite + TypeScript frontend  
@@ -84,7 +84,7 @@ This repository is your comprehensive guide to mastering **GitHub Copilot** thro
 
 | Layer | Spring Boot Stack | .NET Stack | Frontend Stack |
 |-------|-------------------|------------|----------------|
-| **Language** | Java 21 | C# 13 (.NET 9.0) | TypeScript |
+| **Language** | Java 21 | C# 13 (.NET 8.0) | TypeScript |
 | **Framework** | Spring Boot 3.5.5 | ASP.NET Core | React 18 + Vite |
 | **Database** | PostgreSQL + JPA | PostgreSQL + EF Core | - |
 | **Testing** | JUnit 5 + Mockito | xUnit + Moq | Vitest + RTL |
