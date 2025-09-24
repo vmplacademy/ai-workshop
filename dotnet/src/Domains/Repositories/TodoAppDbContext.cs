@@ -1,6 +1,7 @@
-namespace TodoApp.Domains.Models;
+namespace TodoApp.Domains.Repositories;
 
 using Microsoft.EntityFrameworkCore;
+using TodoApp.Domains.Models;
 
 public class TodoAppDbContext : DbContext
 {

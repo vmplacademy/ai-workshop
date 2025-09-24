@@ -1,7 +1,5 @@
-using System.IO;
-using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using TodoApp.Domains.Models;
+using TodoApp.Domains.Repositories;
 using TodoApp.Domains.Services;
 
 var builder = WebApplication.CreateBuilder(args);

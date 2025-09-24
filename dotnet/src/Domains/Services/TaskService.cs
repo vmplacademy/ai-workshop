@@ -2,7 +2,7 @@ namespace TodoApp.Domains.Services;
 
 using TodoApp.Dtos;
 using TodoApp.Domains.Models;
-using Microsoft.EntityFrameworkCore;
+using TodoApp.Domains.Repositories;
 
 public class TaskService : ITaskService
 {
