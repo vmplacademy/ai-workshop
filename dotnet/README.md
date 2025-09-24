@@ -1,11 +1,11 @@
-# .NET 9 TodoApp Workshop
+# .NET 8 TodoApp Workshop
 
 ![.NET 8](https://img.shields.io/badge/.NET-8.0-blue.svg)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Ready-green.svg)
 ![Testcontainers](https://img.shields.io/badge/Testcontainers-Configured-orange.svg)
 ![GitHub Copilot](https://img.shields.io/badge/GitHub_Copilot-Ready-purple.svg)
 
-A modern .NET 9 REST API workshop designed for learning Clean Architecture principles with GitHub Copilot assistance.
+A modern .NET 8 REST API workshop designed for learning Clean Architecture principles with GitHub Copilot assistance.
 
 ## 🚀 **Quick Start**
 
@@ -26,7 +26,7 @@ Visit: `http://localhost:5025/api/hello-world` to test the API!
 
 ## � **Prerequisites**
 
-- ✅ .NET 9 SDK installed
+- ✅ .NET 8 SDK installed
 - ✅ Visual Studio Code with C# Dev Kit extension
 - ✅ GitHub Copilot extension enabled
 - ✅ PostgreSQL (for future phases)
@@ -165,9 +165,9 @@ git checkout https://github.com/vmplacademy/ai-workshop.git/dotnet/task-2
 Explain in detail the role of the given class based on TaskOutOfDateService class.
 ```
 ```text
-Provide potential code improvements for <method_name>. Use C# best practices as of .NET 9. Make sure that the suggestions given improve code quality and readability.
+Provide potential code improvements for <method_name>. Use C# best practices as of .NET 8. Make sure that the suggestions given improve code quality and readability.
 ```
-**Use Best Practices**: Ensure refactored code aligns with .NET 9 standards.
+**Use Best Practices**: Ensure refactored code aligns with .NET 8 standards.
 
 ### **Phase 10: Documentation Generation**
 
@@ -288,7 +288,7 @@ This project is optimized for GitHub Copilot assistance:
 
 ## 🎉 **Phase 1 Complete!**
 
-You now have a fully functional .NET 9 Web API with:
+You now have a fully functional .NET 8 Web API with:
 - ✅ Controller-based architecture
 - ✅ OpenAPI/Swagger documentation  
 - ✅ All necessary NuGet packages
@@ -328,7 +328,7 @@ You now have a fully functional .NET 9 Web API with:
 ## 🛠️ **Tech Stack**
 
 ### **Framework**
-- **.NET 9** - Latest LTS version
+- **.NET 8** - Latest LTS version
 - **ASP.NET Core** - Web API framework
 - **C# 13** - Modern language features
 
@@ -362,7 +362,7 @@ This workshop is designed to work seamlessly with **GitHub Copilot**:
 ## 🔧 **Prerequisites**
 
 ### **Required Software**
-- ✅ [.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) - Latest .NET version
+- ✅ [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) - Latest .NET version
 - ✅ [Visual Studio Code](https://code.visualstudio.com/) - Primary IDE for this workshop
 - ✅ [PostgreSQL](https://www.postgresql.org/download/) (for later phases)
 - ✅ [Docker](https://www.docker.com/get-started) (for Testcontainers)
@@ -470,7 +470,7 @@ This is normal in development mode - the warning is disabled for local developme
 
 ## 📖 **Additional Resources**
 
-- 🔗 [.NET 9 Documentation](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-9)
+- 🔗 [.NET 8 Documentation](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-9)
 - 🔗 [ASP.NET Core Minimal APIs](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis)
 - 🔗 [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/)
 - 🔗 [GitHub Copilot Best Practices](https://github.com/features/copilot)
