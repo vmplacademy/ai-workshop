@@ -1,21 +1,21 @@
 ### Create a new task
-POST http://localhost:8080/api/tasks
+POST http://localhost:5025/api/tasks
 Content-Type: application/json
 
 {
-  "taskName": "Sample Task",
+  "taskName": "Sample Task 2",
   "dueDate": "2023-12-31T23:59:59",
-  "description": "This is a sample task description."
+  "description": "This is a sample task 2 description."
 }
 
 ### Get a task by ID
-GET http://localhost:8080/api/tasks/1
+GET http://localhost:5025/api/tasks/1
 
 ### Get all tasks
-GET http://localhost:8080/api/tasks
+GET http://localhost:5025/api/tasks
 
 ### Update a task
-PUT http://localhost:8080/api/tasks/1
+PUT http://localhost:5025/api/tasks/1
 Content-Type: application/json
 
 {
@@ -26,4 +26,4 @@ Content-Type: application/json
 }
 
 ### Delete a task
-DELETE http://localhost:8080/api/tasks/1
+DELETE http://localhost:5025/api/tasks/1

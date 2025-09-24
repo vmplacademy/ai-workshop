@@ -1,10 +1,10 @@
+namespace TodoApp.Controllers;
+
 using System;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TodoApp.Dtos;
 using TodoApp.Domains.Services;
-
-namespace TodoApp.Controllers;
 
 /// <summary>
 /// Controller for Task CRUD operations.

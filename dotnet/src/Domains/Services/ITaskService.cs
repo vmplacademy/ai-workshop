@@ -1,6 +1,6 @@
-using TodoApp.Dtos;
-
 namespace TodoApp.Domains.Services;
+
+using TodoApp.Dtos;
 
 public interface ITaskService
 {

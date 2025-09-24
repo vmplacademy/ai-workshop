@@ -1,6 +1,6 @@
-using System;
-
 namespace TodoApp.Dtos;
+
+using System;
 
 public record TaskQuery(
     long Id,
