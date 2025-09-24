@@ -7,6 +7,5 @@ public record CreateTaskCommand(
     [Required]
     string TaskName,
     DateTime DueDate,
-    TaskStatus Status,
     string? Description
 );
