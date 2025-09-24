@@ -6,10 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>TodoApp</AssemblyName>
     <RootNamespace>TodoApp</RootNamespace>
-
-    <!-- Generate XML documentation file for public APIs -->
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
