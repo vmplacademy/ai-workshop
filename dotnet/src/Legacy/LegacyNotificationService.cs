@@ -1,6 +1,6 @@
-using System;
-
 namespace TodoApp.Legacy;
+
+using System;
 
 /// <summary>
 /// Provides legacy notification functionality for sending messages via SMS, Email, and Push.

@@ -1,21 +1,24 @@
+// Please update @baseUrl based on currently running local application
+@baseUrl = http://localhost:5025/api/tasks
+
 ### Create a new task
-POST http://localhost:8080/api/tasks
+POST {{baseUrl}}
 Content-Type: application/json
 
 {
-  "taskName": "Sample Task",
+  "taskName": "Sample Task 1",
   "dueDate": "2023-12-31T23:59:59",
-  "description": "This is a sample task description."
+  "description": "This is a sample task 1 description."
 }
 
 ### Get a task by ID
-GET http://localhost:8080/api/tasks/1
+GET {{baseUrl}}/1
 
 ### Get all tasks
-GET http://localhost:8080/api/tasks
+GET {{baseUrl}}/tasks
 
 ### Update a task
-PUT http://localhost:8080/api/tasks/1
+PUT {{baseUrl}}/1
 Content-Type: application/json
 
 {
@@ -26,4 +29,4 @@ Content-Type: application/json
 }
 
 ### Delete a task
-DELETE http://localhost:8080/api/tasks/1
+DELETE {{baseUrl}}/1
