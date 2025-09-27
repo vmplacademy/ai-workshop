@@ -13,7 +13,7 @@ public class DbContextFixture : IDisposable
     public DbContextFixture()
     {
         var options = new DbContextOptionsBuilder<TodoAppDbContext>()
-            .UseInMemoryDatabase("SharedTestDb")
+            .UseInMemoryDatabase(Guid.NewGuid().ToString())
             .Options;
         Db = new TodoAppDbContext(options);
     }
@@ -24,9 +24,19 @@ public class DbContextFixture : IDisposable
     }
 }
 
-public class TaskServiceTest(DbContextFixture fixture) : IClassFixture<DbContextFixture>
+public class TaskServiceTest : IClassFixture<DbContextFixture>
 {
-    private readonly TodoAppDbContext _db = fixture.Db;
+    private readonly TodoAppDbContext _db;
+
+    public TaskServiceTest(DbContextFixture fixture)
+    {
+        _db = fixture.Db;
+        if (_db.Tasks.Any())
+        {
+            _db.Tasks.RemoveRange(_db.Tasks);
+            _db.SaveChanges();
+        }
+    }
 
     public class CreateTask(DbContextFixture fixture) : TaskServiceTest(fixture)
     {
@@ -175,6 +185,41 @@ public class TaskServiceTest(DbContextFixture fixture) : IClassFixture<DbContext
 
             // then
             Assert.False(result);
+        }
+    }
+
+    public class GetAllTasks(DbContextFixture fixture) : TaskServiceTest(fixture)
+    {
+        [Fact]
+        public void Should_Return_EmptyList_When_NoTasksExist()
+        {
+            // given
+            var service = new TaskService(_db);
+
+            // when
+            var result = service.GetAllTasks();
+
+            // then
+            Assert.NotNull(result);
+            Assert.Empty(result);
+        }
+
+        [Fact]
+        public void Should_Return_AllTasks_When_TasksExist()
+        {
+            // given
+            var service = new TaskService(_db);
+            var task1 = service.CreateTask(new CreateTaskCommand("Task 1", DateTime.UtcNow.AddDays(1), "desc1"));
+            var task2 = service.CreateTask(new CreateTaskCommand("Task 2", DateTime.UtcNow.AddDays(2), "desc2"));
+
+            // when
+            var result = service.GetAllTasks();
+
+            // then
+            Assert.NotNull(result);
+            Assert.True(result.Count() >= 2);
+            Assert.Contains(result, t => t.Id == task1.Id);
+            Assert.Contains(result, t => t.Id == task2.Id);
         }
     }
 }

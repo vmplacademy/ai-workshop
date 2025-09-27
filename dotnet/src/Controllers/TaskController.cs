@@ -1,6 +1,7 @@
 namespace TodoApp.Controllers;
 
 using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TodoApp.Dtos;
@@ -75,5 +76,16 @@ public class TaskController : ControllerBase
         var deleted = _taskService.DeleteTask(id);
         if (!deleted) return NotFound();
         return NoContent();
+    }
+        
+    /// <summary>
+    /// Gets all tasks.
+    /// </summary>
+    [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public ActionResult<IEnumerable<TaskQuery>> GetAll()
+    {
+        var tasks = _taskService.GetAllTasks();
+        return Ok(tasks);
     }
 }
