@@ -13,6 +13,7 @@
     "/tasks": {
       "post": {
         "summary": "Add a new task",
+        "description": "Creates a new task with the provided details.",
         "requestBody": {
           "required": true,
           "content": {
@@ -21,14 +22,17 @@
                 "type": "object",
                 "properties": {
                   "taskName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the task."
                   },
                   "dueDate": {
                     "type": "string",
-                    "format": "date-time"
+                    "format": "date-time",
+                    "description": "Due date for the task."
                   },
                   "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Additional details about the task."
                   }
                 },
                 "required": ["taskName", "dueDate"]
@@ -38,7 +42,7 @@
         },
         "responses": {
           "201": {
-            "description": "Task added successfully",
+            "description": "Task added successfully. Returns the created task.",
             "content": {
               "application/json": {
                 "schema": {
@@ -48,23 +52,25 @@
             }
           },
           "400": {
-            "description": "Task cannot be created"
+            "description": "Task cannot be created due to invalid input."
           }
         }
       },
       "get": {
         "summary": "Get all tasks",
+        "description": "Retrieves all tasks in the system.",
         "operationId": "getAllTasks",
         "responses": {
           "200": {
-            "description": "A list of tasks",
+            "description": "A list of tasks.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/TaskQuery"
-                  }
+                  },
+                  "description": "Array of TaskQuery objects representing all tasks."
                 }
               }
             }
@@ -75,6 +81,7 @@
     "/tasks/{id}": {
       "get": {
         "summary": "Get a task by ID",
+        "description": "Retrieves a single task by its unique identifier.",
         "parameters": [
           {
             "name": "id",
@@ -82,12 +89,13 @@
             "required": true,
             "schema": {
               "type": "integer"
-            }
+            },
+            "description": "Unique identifier of the task."
           }
         ],
         "responses": {
           "200": {
-            "description": "Task retrieved successfully",
+            "description": "Task retrieved successfully. Returns the task details.",
             "content": {
               "application/json": {
                 "schema": {
@@ -97,12 +105,13 @@
             }
           },
           "404": {
-            "description": "Task not found"
+            "description": "Task not found for the given ID."
           }
         }
       },
       "put": {
         "summary": "Edit a task",
+        "description": "Updates the details of an existing task by its ID.",
         "parameters": [
           {
             "name": "id",
@@ -110,7 +119,8 @@
             "required": true,
             "schema": {
               "type": "integer"
-            }
+            },
+            "description": "Unique identifier of the task to update."
           }
         ],
         "requestBody": {
@@ -121,18 +131,22 @@
                 "type": "object",
                 "properties": {
                   "taskName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Updated name of the task."
                   },
                   "dueDate": {
                     "type": "string",
-                    "format": "date-time"
+                    "format": "date-time",
+                    "description": "Updated due date for the task."
                   },
                   "status": {
                     "type": "string",
-                    "enum": ["CREATED", "IN_PROGRESS", "DONE"]
+                    "enum": ["CREATED", "IN_PROGRESS", "DONE"],
+                    "description": "Updated status of the task."
                   },
                   "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Updated description of the task."
                   }
                 }
               }
@@ -141,7 +155,7 @@
         },
         "responses": {
           "200": {
-            "description": "Task edited successfully",
+            "description": "Task edited successfully. Returns the updated task.",
             "content": {
               "application/json": {
                 "schema": {
@@ -151,12 +165,13 @@
             }
           },
           "404": {
-            "description": "Task not found"
+            "description": "Task not found for the given ID."
           }
         }
       },
       "delete": {
         "summary": "Remove a task",
+        "description": "Deletes a task by its unique identifier.",
         "parameters": [
           {
             "name": "id",
@@ -164,15 +179,16 @@
             "required": true,
             "schema": {
               "type": "integer"
-            }
+            },
+            "description": "Unique identifier of the task to delete."
           }
         ],
         "responses": {
           "204": {
-            "description": "Task removed successfully"
+            "description": "Task removed successfully. No content returned."
           },
           "404": {
-            "description": "Task not found"
+            "description": "Task not found for the given ID."
           }
         }
       }
@@ -182,23 +198,29 @@
     "schemas": {
       "TaskQuery": {
         "type": "object",
+        "description": "Represents a task with its details.",
         "properties": {
           "id": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Unique identifier of the task."
           },
           "taskName": {
-            "type": "string"
+            "type": "string",
+            "description": "Name of the task."
           },
           "dueDate": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "Due date for the task."
           },
           "status": {
             "type": "string",
-            "enum": ["CREATED", "IN_PROGRESS", "DONE"]
+            "enum": ["CREATED", "IN_PROGRESS", "DONE"],
+            "description": "Current status of the task."
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "description": "Additional details about the task."
           }
         }
       }

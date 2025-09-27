@@ -38,7 +38,7 @@ public class TaskServiceTest : IClassFixture<DbContextFixture>
         }
     }
 
-    public class CreateTask(DbContextFixture fixture) : TaskServiceTest(fixture)
+    public class CreateTaskTests(DbContextFixture fixture) : TaskServiceTest(fixture)
     {
         [Fact]
         public void Should_Return_TaskQuery_When_CreateTask_WithValidCommand()
@@ -75,7 +75,7 @@ public class TaskServiceTest : IClassFixture<DbContextFixture>
         }
     }
 
-    public class GetTaskById(DbContextFixture fixture) : TaskServiceTest(fixture)
+    public class GetTaskByIdTests(DbContextFixture fixture) : TaskServiceTest(fixture)
     {
         [Fact]
         public void Should_Return_Null_When_GetTaskById_AndTaskDoesNotExist()
@@ -107,7 +107,7 @@ public class TaskServiceTest : IClassFixture<DbContextFixture>
         }
     }
 
-    public class UpdateTask(DbContextFixture fixture) : TaskServiceTest(fixture)
+    public class UpdateTaskTests(DbContextFixture fixture) : TaskServiceTest(fixture)
     {
         [Fact]
         public void Should_Update_Task_When_UpdateTask_AndTaskExists()
@@ -156,7 +156,7 @@ public class TaskServiceTest : IClassFixture<DbContextFixture>
         }
     }
 
-    public class DeleteTask(DbContextFixture fixture) : TaskServiceTest(fixture)
+    public class DeleteTaskTests(DbContextFixture fixture) : TaskServiceTest(fixture)
     {
         [Fact]
         public void Should_Remove_And_Return_True_When_DeleteTask_AndTaskExists()
@@ -188,7 +188,7 @@ public class TaskServiceTest : IClassFixture<DbContextFixture>
         }
     }
 
-    public class GetAllTasks(DbContextFixture fixture) : TaskServiceTest(fixture)
+    public class GetAllTasksTests(DbContextFixture fixture) : TaskServiceTest(fixture)
     {
         [Fact]
         public void Should_Return_EmptyList_When_NoTasksExist()
