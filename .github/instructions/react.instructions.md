@@ -1,6 +1,6 @@
 ---
 description: 'React development guidelines and best practices for modern frontend applications'
-applyTo: '**/package.json, **/*.jsx, **/*.tsx, **/*.js, **/*.ts, **/vite.config.js, **/tailwind.config.js'
+applyTo: 'react/**/package.json, react/**/*.jsx, react/**/*.tsx, react/**/*.js, react/**/*.ts, react/**/vite.config.js, react/**/tailwind.config.js'
 ---
 
 # React Development Guidelines
