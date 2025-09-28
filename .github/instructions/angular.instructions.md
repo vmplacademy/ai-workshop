@@ -12,7 +12,7 @@ Instructions for generating high-quality Angular applications with TypeScript, u
 - TypeScript for type safety
 - Angular CLI for project setup and scaffolding
 - Follow Angular Style Guide (https://angular.dev/style-guide)
-- Use Angular Material or other modern UI libraries for consistent styling (if specified)
+- Use Tailwind CSS for utility-first styling and responsive design
 
 ## Development Standards
 
@@ -38,11 +38,13 @@ Instructions for generating high-quality Angular applications with TypeScript, u
 - Use Angular directives and pipes for reusable functionality
 
 ### Styling
-- Use Angular's component-level CSS encapsulation (default: ViewEncapsulation.Emulated)
-- Prefer SCSS for styling with consistent theming
-- Implement responsive design using CSS Grid, Flexbox, or Angular CDK Layout utilities
-- Follow Angular Material's theming guidelines if used
+- Use Tailwind CSS utility classes for consistent styling across the application
+- Leverage Angular's component-level CSS encapsulation (default: ViewEncapsulation.Emulated) for component-specific styles
+- Implement responsive design using Tailwind CSS responsive prefixes (sm:, md:, lg:, xl:)
+- Follow Tailwind CSS design system patterns for spacing, colors, and typography
+- Use Tailwind's utility classes for hover states, transitions, and animations
 - Maintain accessibility (a11y) with ARIA attributes and semantic HTML
+- Combine Tailwind utilities with Angular's class binding for dynamic styling
 
 ### State Management
 - Use Angular Signals for reactive state management in components and services

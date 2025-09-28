@@ -30,9 +30,9 @@ This implementation must follow:
 
 ## 🛠️ Technology Stack
 
-- **Angular 18+**
+- **Angular 20**
 - **TypeScript**
-- **Angular Material** (UI components)
+- **Tailwind CSS**
 - **Angular Router** (minimal usage due to single-screen design)
 - **Angular HttpClient** (API communication)
 - **NgRx or Akita** (state management)

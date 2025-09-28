@@ -1,6 +1,5 @@
 ---
 description: Setup AI Workshop frontend project for specified framework with comprehensive requirements and success criteria
-mode: ask
 ---
 
 # Setup AI Workshop Frontend Project
@@ -16,7 +15,9 @@ Define the task to achieve based on the specified frontend framework, including 
 Based on the selected frontend framework (`${input:framework}`), this prompt will generate:
 
 ### 🎯 **Primary Objective**
-Create a comprehensive workshop frontend project setup for **${input:framework}** that implements the ToDo List application according to the Product Requirements Document (PRD), providing a modern, responsive single-screen UI that integrates with any backend implementation (Spring Boot, .NET, Node.js).
+Create a comprehensive workshop frontend module setup for **${input:framework}** that implements the ToDo List application according to the Product Requirements Document (PRD), providing a modern, responsive single-screen UI that integrates with any backend implementation (Spring Boot, .NET, Node.js).
+
+**IMPORTANT**: Work within the current VS Code workspace. Do NOT create or open a new workspace during setup.
 
 ### 📋 **Design Requirements**
 
@@ -47,7 +48,7 @@ Each framework follows specific guidelines and best practices detailed in dedica
 
 #### **Angular** (`framework=angular`)
 📖 **Full Guidelines**: [Angular Instructions](../instructions/angular.instructions.md)
-- **Technology Stack**: Angular 18, TypeScript, Angular Material
+- **Technology Stack**: Angular 20, TypeScript, Tailwind CSS
 - **Architecture**: Component-based with services and dependency injection
 - **Testing**: Jasmine, Karma, Angular Testing Utilities
 - **State Management**: NgRx or Akita
@@ -55,16 +56,17 @@ Each framework follows specific guidelines and best practices detailed in dedica
 - **HTTP Client**: Angular HttpClient
 
 ### 🚫 **Universal Frontend Constraints**
-1. **Backend Agnostic**: Must work with Spring Boot, .NET, and Node.js backends
-2. **Follow framework-specific conventions** and best practices
-3. **Responsive Design**: Mobile-first approach with proper breakpoints
-4. **Use GitHub Copilot integration** examples throughout
-5. **TypeScript**: Mandatory for type safety and better development experience
-6. **Modern Build Tools**: Vite, Webpack, or framework-specific CLI
-7. **Component Testing**: Comprehensive component and integration tests
-8. **Accessibility**: WCAG 2.1 AA compliance where possible
-9. **Performance**: Code splitting, lazy loading, and optimization
-10. **API Integration**: Configurable backend endpoints
+1. **Use Current Workspace**: Work within the existing VS Code workspace - DO NOT create or open a new workspace
+2. **Backend Agnostic**: Must work with Spring Boot, .NET, and Node.js backends
+3. **Follow framework-specific conventions** and best practices
+4. **Responsive Design**: Mobile-first approach with proper breakpoints
+5. **Use GitHub Copilot integration** examples throughout
+6. **TypeScript**: Mandatory for type safety and better development experience
+7. **Modern Build Tools**: Vite, Webpack, or framework-specific CLI
+8. **Component Testing**: Comprehensive component and integration tests
+9. **Accessibility**: WCAG 2.1 AA compliance where possible
+10. **Performance**: Code splitting, lazy loading, and optimization
+11. **API Integration**: Configurable backend endpoints
 
 ### 🎨 **UI/UX Requirements (Per PRD)**
 1. **Single Main Screen**: All tasks displayed in one view with sidebar filters
@@ -104,6 +106,7 @@ Each framework follows specific guidelines and best practices detailed in dedica
 - **Performance Guidelines**: Framework-specific optimization techniques
 
 ### 📦 **Expected Frontend Deliverables**
+- [ ] Frontend project init setup for **${input:framework}**
 - [ ] Complete frontend project structure with proper component organization
 - [ ] Build configuration (package.json, vite.config.ts, etc.)
 - [ ] Application entry point and routing setup
@@ -136,7 +139,7 @@ All frontend implementations should follow this structure:
 │   ├── components/      # Reusable UI components
 │   │   ├── common/      # Generic components
 │   │   └── task/        # Task-specific components
-│   ├── pages/           # Page components
+│   ├── containers /     # Container - Page components
 │   ├── services/        # API communication
 │   ├── stores/          # State management
 │   ├── types/           # TypeScript type definitions
@@ -179,5 +182,5 @@ const API_CONFIGS: Record<string, ApiConfig> = {
 ---
 
 **Usage Examples**:
-- `/setup-project framework=react` - Setup React frontend project
-- `/setup-project framework=angular` - Setup Angular frontend project
+- `/setup-project.frontend framework=react` - Setup React frontend project
+- `/setup-project.frontend framework=angular` - Setup Angular frontend project

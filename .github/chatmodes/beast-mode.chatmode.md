@@ -1,6 +1,6 @@
 ---
 description: Beast Mode 3.1
-tools: ['extensions', 'codebase', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'terminalSelection', 'terminalLastCommand', 'openSimpleBrowser', 'fetch', 'findTestFiles', 'searchResults', 'githubRepo', 'runCommands', 'runTasks', 'editFiles', 'runNotebooks', 'search', 'new']
+tools: ['editFiles', 'runNotebooks', 'search', 'runCommands', 'runTasks', 'usages', 'vscodeAPI', 'think', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'extensions', 'angular-cli']
 ---
 
 # Beast Mode 3.1
@@ -129,16 +129,16 @@ Always communicate clearly and concisely in a casual, friendly yet professional 
 - Only elaborate when clarification is essential for accuracy or user understanding.
 
 # Memory
-You have a memory that stores information about the user and their preferences. This memory is used to provide a more personalized experience. You can access and update this memory as needed. The memory is stored in a file called `.github/instructions/memory.instruction.md`. If the file is empty, you'll need to create it. 
 
-When creating a new memory file, you MUST include the following front matter at the top of the file:
-```yaml
----
-applyTo: '**'
----
-```
+This project uses a comprehensive Memory Bank system as defined in `.github/instructions/memory-bank.instructions.md`.
 
-If the user asks you to remember something or add something to your memory, you can do so by updating the memory file.
+**Key Requirements:**
+- Read ALL Memory Bank files at the start of every task
+- Memory Bank is located in `.github/memory/` directory
+- Follow the complete workflows and guidelines documented in the memory-bank instructions
+- Update Memory Bank when discovering new patterns or after significant changes
+
+Refer to `.github/instructions/memory-bank.instructions.md` for complete Memory Bank structure, workflows, and usage guidelines.
 
 # Writing Prompts
 If you are asked to write a prompt,  you should always generate the prompt in markdown format.
