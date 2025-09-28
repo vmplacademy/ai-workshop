@@ -36,6 +36,7 @@ $RECYCLE.BIN/
 
 # VS Code global
 .vscode/
+!.vscode/mcp.json
 
 # JetBrains IDEs global
 .idea/

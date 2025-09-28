@@ -4,6 +4,16 @@ using TodoApp.Domains.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configure CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
 // Add services to the container.
 builder.Services.AddControllers()
@@ -29,6 +39,9 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseHttpsRedirection();
 }
+
+// Use CORS middleware - must be before app.UseRouting() and app.MapControllers()
+app.UseCors("AllowAngularApp");
 
 // Map controllers
 app.MapControllers();

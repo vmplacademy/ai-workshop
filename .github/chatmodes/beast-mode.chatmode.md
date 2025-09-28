@@ -1,6 +1,6 @@
 ---
 description: Beast Mode 3.1
-tools: ['editFiles', 'runNotebooks', 'search', 'runCommands', 'runTasks', 'usages', 'vscodeAPI', 'think', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'extensions', 'angular-cli']
+tools: ['editFiles', 'runNotebooks', 'search', 'runCommands', 'runTasks', 'usages', 'vscodeAPI', 'think', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'extensions', 'context7', 'angular-cli', 'microsoft/playwright-mcp', 'upstash/context7', 'sequential-thinking']
 ---
 
 # Beast Mode 3.1

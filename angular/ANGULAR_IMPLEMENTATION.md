@@ -5,38 +5,66 @@ Single-screen todo application with dialog-based forms. NO routing, NO navigatio
 
 ## 🛠️ Setup Commands (Execute in Order)
 ```bash
-# From angular/ directory (where this file lives):
 # Create a workspace named "angular" with the app inside
 ng new angular --standalone --routing=false --style=css --skip-git --ssr=false
 
 # Navigate into the workspace
 cd angular
 
-# Install Tailwind CSS 4
-npm install -D tailwindcss@^4.0.0 postcss autoprefixer @tailwindcss/forms
+# Install and configure Tailwind CSS 4
+# Follow official Angular guide: https://tailwindcss.com/docs/installation/framework-guides/angular
+npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init
+
+# Clear the Angular placeholder template
+# Remove all default Angular welcome content from src/app/app.component.html
+echo '<router-outlet></router-outlet>' > src/app/app.component.html
+# Or for standalone without routing:
+echo '<div class="container mx-auto p-4"><!-- Your app here --></div>' > src/app/app.component.html
+
+# Clear default styles from src/app/app.component.css
+echo '' > src/app/app.component.css
 
 # To run the application:
 ng serve
 # App will be available at http://localhost:4200
 ```
 
+### Clean Slate Setup
+After running `ng new`, Angular creates a welcome page with placeholder content. Clear it before implementing:
+
+1. **Clear `src/app/app.component.html`** - Remove all default HTML
+2. **Clear `src/app/app.component.css`** - Remove default component styles
+3. **Update `src/app/app.component.ts`** - Set title to 'Todo App'
+
+This gives you a clean canvas to start implementing the todo application.
+
 ### Tailwind Configuration
+Follow the official Angular integration guide at: https://tailwindcss.com/docs/installation/framework-guides/angular
+
+Key configuration steps:
+1. Configure `tailwind.config.js`:
 ```javascript
-// tailwind.config.js
-export default {
-  content: ["./src/**/*.{html,ts}"],
-  theme: { extend: {} },
-  plugins: [require('@tailwindcss/forms')],
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{html,ts}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
 }
 ```
 
+2. Add Tailwind directives to `src/styles.css`:
 ```css
-/* src/styles.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 ```
+
+**Note**: The official guide ensures proper PostCSS integration with Angular's build system.
 
 ## 📁 Component Structure → Mockup Mapping
 
