@@ -24,6 +24,7 @@ Create a comprehensive workshop frontend module setup for **${input:framework}**
 **CRITICAL**: This implementation must follow the specifications defined in:
 - **PRD Document**: `docs/frontend/PRD_frontend.md` - Defines complete UI/UX requirements, single-screen architecture, and dialog-based interactions
 - **Visual Mockups**: `docs/frontend/mockups/` - Contains detailed PNG images showing exact layouts, colors, and component positioning
+- **Angular Only**: For Angular implementation, use `angular/ANGULAR_IMPLEMENTATION.md` as the primary reference instead of PRD
 
 ### 🎨 **Key Design Principles from PRD**
 1. **Single-Screen Application**: All tasks visible on main screen without navigation
@@ -47,13 +48,13 @@ Each framework follows specific guidelines and best practices detailed in dedica
 - **HTTP Client**: Axios or Fetch API
 
 #### **Angular** (`framework=angular`)
-📖 **Full Guidelines**: [Angular Instructions](../instructions/angular.instructions.md)
-- **Technology Stack**: Angular 20, TypeScript, Tailwind CSS
-- **Architecture**: Component-based with services and dependency injection
+📖 **Implementation Guide**: [ANGULAR_IMPLEMENTATION.md](../../angular/ANGULAR_IMPLEMENTATION.md)
+- **Technology Stack**: Angular 20, TypeScript 5.5, Tailwind CSS 4
+- **Architecture**: Standalone components with services and dependency injection
 - **Testing**: Jasmine, Karma, Angular Testing Utilities
-- **State Management**: NgRx or Akita
-- **Routing**: Angular Router
+- **State Management**: Angular Signals (built-in)
 - **HTTP Client**: Angular HttpClient
+- **NO Routing**: Single-screen application
 
 ### 🚫 **Universal Frontend Constraints**
 1. **Use Current Workspace**: Work within the existing VS Code workspace - DO NOT create or open a new workspace
@@ -109,7 +110,7 @@ Each framework follows specific guidelines and best practices detailed in dedica
 - [ ] Frontend project init setup for **${input:framework}**
 - [ ] Complete frontend project structure with proper component organization
 - [ ] Build configuration (package.json, vite.config.ts, etc.)
-- [ ] Application entry point and routing setup
+- [ ] Application entry point setup
 - [ ] Component library with reusable UI components
 - [ ] Task management components (List, Create, Edit, Delete)
 - [ ] API service layer for backend communication

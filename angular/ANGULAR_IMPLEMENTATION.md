@@ -1,0 +1,170 @@
+# Angular 20 Todo App - Implementation Guide
+
+## 🎯 Core Requirements
+Single-screen todo application with dialog-based forms. NO routing, NO navigation.
+
+## 🛠️ Setup Commands (Execute in Order)
+```bash
+# From angular/ directory (where this file lives):
+# Create a workspace named "angular" with the app inside
+ng new angular --standalone --routing=false --style=css --skip-git --ssr=false
+
+# Navigate into the workspace
+cd angular
+
+# Install Tailwind CSS 4
+npm install -D tailwindcss@^4.0.0 postcss autoprefixer @tailwindcss/forms
+npx tailwindcss init
+
+# To run the application:
+ng serve
+# App will be available at http://localhost:4200
+```
+
+### Tailwind Configuration
+```javascript
+// tailwind.config.js
+export default {
+  content: ["./src/**/*.{html,ts}"],
+  theme: { extend: {} },
+  plugins: [require('@tailwindcss/forms')],
+}
+```
+
+```css
+/* src/styles.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+## 📁 Component Structure → Mockup Mapping
+
+| Component | Mockup Reference | Purpose |
+|-----------|-----------------|---------|
+| `AppComponent` | Layout container | Main application shell |
+| `HeaderComponent` | `1_main_view.png` top | Logo left, "Add Task" button right |
+| `SidebarComponent` | `1_main_view.png` left | Status filters, search, sort |
+| `TaskListComponent` | `1_main_view.png` center | Displays all tasks |
+| `TaskItemComponent` | Task cards in main view | Individual task with inline actions |
+| `TaskDialogComponent` | `2.3_add_task_dialog_view.png`, `3.2_edit_task_dialog_view.png` | Create/Edit overlay |
+
+## 💾 State Management - Use Angular Signals ONLY
+```typescript
+// app.service.ts - NO NgRx, NO Akita needed
+import { Injectable, signal, computed } from '@angular/core';
+
+@Injectable({ providedIn: 'root' })
+export class TaskService {
+  tasks = signal<Task[]>([]);
+  filter = signal<FilterType>('all');
+
+  filteredTasks = computed(() => {
+    const allTasks = this.tasks();
+    const currentFilter = this.filter();
+    return currentFilter === 'all' ? allTasks : allTasks.filter(t => t.status === currentFilter);
+  });
+}
+```
+
+## 🏗️ Modern Angular 20 Syntax
+```typescript
+// Use new control flow - NO *ngIf, *ngFor
+@Component({
+  template: `
+    <div class="grid grid-cols-[250px_1fr] h-screen">
+      <app-sidebar />
+      <main class="p-6 overflow-y-auto">
+        @if (loading()) {
+          <div class="text-center py-8">Loading...</div>
+        } @else if (tasks().length === 0) {
+          <div class="text-center py-12">
+            <p>No tasks yet</p>
+            <button (click)="openDialog()" class="mt-4 btn-primary">Create First Task</button>
+          </div>
+        } @else {
+          @for (task of filteredTasks(); track task.id) {
+            <app-task-item [task]="task" />
+          }
+        }
+      </main>
+    </div>
+  `
+})
+```
+
+## 📦 Required Dependencies
+```json
+{
+  "dependencies": {
+    "@angular/animations": "^20.0.0",
+    "@angular/cdk": "^20.0.0",
+    "@angular/common": "^20.0.0",
+    "@angular/core": "^20.0.0",
+    "@angular/forms": "^20.0.0",
+    "@angular/platform-browser": "^20.0.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.0.0",
+    "typescript": "~5.5.0"
+  }
+}
+```
+
+## 🎨 Dialog Implementation
+```typescript
+// Use Angular CDK Dialog - NO custom modals
+import { Dialog } from '@angular/cdk/dialog';
+
+openTaskDialog(task?: Task) {
+  const dialogRef = this.dialog.open(TaskDialogComponent, {
+    data: task,
+    panelClass: 'task-dialog',
+    hasBackdrop: true,
+    backdropClass: 'bg-black/50'
+  });
+}
+```
+
+## 🔌 API Integration
+```typescript
+// environment.ts
+export const environment = {
+  apiUrl: 'http://localhost:8080/api', // or 5025 for .NET
+  endpoints: {
+    tasks: '/tasks'
+  }
+};
+
+// task.service.ts
+getTasks() {
+  return this.http.get<Task[]>(`${environment.apiUrl}${environment.endpoints.tasks}`);
+}
+```
+
+## ❌ DO NOT USE
+- Angular Router (no routing needed)
+- NgRx/Akita (use Signals instead)
+- Modules (use standalone components)
+- Legacy directives (*ngIf, *ngFor)
+- Custom modal implementations
+
+## ✅ Task Model
+```typescript
+interface Task {
+  id: string;
+  taskName: string;
+  description?: string;
+  status: 'TODO' | 'IN_PROGRESS' | 'DONE';
+  dueDate: string;
+}
+```
+
+## 🎯 Success Criteria
+1. Single screen with all tasks visible
+2. Dialog overlays for create/edit (CDK Dialog)
+3. "Add Task" button top-right in header
+4. Each task shows Edit/Delete buttons
+5. Sidebar filters working with Signals
+6. Tailwind 4 styling throughout
+7. NO routing anywhere in the app

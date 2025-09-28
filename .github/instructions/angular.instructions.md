@@ -7,6 +7,45 @@ applyTo: 'angular/**/*.ts, angular/**/*.html, angular/**/*.scss, angular/**/*.cs
 
 Instructions for generating high-quality Angular applications with TypeScript, using Angular Signals for state management, adhering to Angular best practices as outlined at https://angular.dev.
 
+## Project Setup
+
+### Initial Angular Project Creation
+Always start with creating a new Angular project using Angular CLI:
+```bash
+# Install Angular CLI globally (if needed)
+npm install -g @angular/cli
+
+# Create new Angular project
+ng new angular --directory . --routing=false --style=css --skip-git
+```
+- `--routing=false`: Single-screen application doesn't require routing
+- `--style=css`: Use CSS as we'll integrate Tailwind CSS
+- `--skip-git`: Avoid nested git repositories
+- `--directory .`: Create in current directory
+
+### Tailwind CSS Integration
+After creating the Angular project:
+```bash
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init
+```
+
+Configure `tailwind.config.js`:
+```javascript
+module.exports = {
+  content: ["./src/**/*.{html,ts}"],
+  theme: { extend: {} },
+  plugins: [],
+}
+```
+
+Add to `src/styles.css`:
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
 ## Project Context
 - Latest Angular version (use standalone components by default)
 - TypeScript for type safety
