@@ -1,6 +1,5 @@
 ---
 description: Setup AI Workshop frontend project for specified framework with comprehensive requirements and success criteria
-mode: ask
 ---
 
 # Setup AI Workshop Frontend Project
@@ -16,7 +15,24 @@ Define the task to achieve based on the specified frontend framework, including 
 Based on the selected frontend framework (`${input:framework}`), this prompt will generate:
 
 ### 🎯 **Primary Objective**
-Create a comprehensive workshop frontend project setup for **${input:framework}** that provides a modern, responsive UI for the TodoList application and integrates with any backend implementation (Spring Boot, .NET, Node.js).
+Create a comprehensive workshop frontend module setup for **${input:framework}** that implements the ToDo List application according to the Product Requirements Document (PRD), providing a modern, responsive single-screen UI that integrates with any backend implementation (Spring Boot, .NET, Node.js).
+
+**IMPORTANT**: Work within the current VS Code workspace. Do NOT create or open a new workspace during setup.
+
+### 📋 **Design Requirements**
+
+**CRITICAL**: This implementation must follow the specifications defined in:
+- **PRD Document**: `docs/frontend/PRD_frontend.md` - Defines complete UI/UX requirements, single-screen architecture, and dialog-based interactions
+- **Visual Mockups**: `docs/frontend/mockups/` - Contains detailed PNG images showing exact layouts, colors, and component positioning
+- **Angular Only**: For Angular implementation, use `angular/ANGULAR_IMPLEMENTATION.md` as the primary reference instead of PRD
+
+### 🎨 **Key Design Principles from PRD**
+1. **Single-Screen Application**: All tasks visible on main screen without navigation
+2. **Dialog-Based Forms**: Create/Edit operations use overlay dialogs, NOT separate screens
+3. **Top-Right Add Button**: "Add Task" button positioned in header top-right corner
+4. **Inline Task Actions**: Each task shows Edit and Delete buttons directly
+5. **Context Preservation**: Main task list always visible behind dialogs
+6. **All Tasks View**: Default view shows ALL tasks in single scrollable list
 
 ### 📋 **Framework-Specific Requirements**
 
@@ -32,61 +48,69 @@ Each framework follows specific guidelines and best practices detailed in dedica
 - **HTTP Client**: Axios or Fetch API
 
 #### **Angular** (`framework=angular`)
-📖 **Full Guidelines**: [Angular Instructions](../instructions/angular.instructions.md)
-- **Technology Stack**: Angular 18, TypeScript, Angular Material
-- **Architecture**: Component-based with services and dependency injection
+📖 **Implementation Guide**: [ANGULAR_IMPLEMENTATION.md](../../angular/ANGULAR_IMPLEMENTATION.md)
+- **Technology Stack**: Angular 20, TypeScript 5.5, Tailwind CSS 4
+- **Architecture**: Standalone components with services and dependency injection
 - **Testing**: Jasmine, Karma, Angular Testing Utilities
-- **State Management**: NgRx or Akita
-- **Routing**: Angular Router
+- **State Management**: Angular Signals (built-in)
 - **HTTP Client**: Angular HttpClient
+- **NO Routing**: Single-screen application
 
 ### 🚫 **Universal Frontend Constraints**
-1. **Backend Agnostic**: Must work with Spring Boot, .NET, and Node.js backends
-2. **Follow framework-specific conventions** and best practices
-3. **Responsive Design**: Mobile-first approach with proper breakpoints
-4. **Use GitHub Copilot integration** examples throughout
-5. **TypeScript**: Mandatory for type safety and better development experience
-6. **Modern Build Tools**: Vite, Webpack, or framework-specific CLI
-7. **Component Testing**: Comprehensive component and integration tests
-8. **Accessibility**: WCAG 2.1 AA compliance where possible
-9. **Performance**: Code splitting, lazy loading, and optimization
-10. **API Integration**: Configurable backend endpoints
+1. **Use Current Workspace**: Work within the existing VS Code workspace - DO NOT create or open a new workspace
+2. **Backend Agnostic**: Must work with Spring Boot, .NET, and Node.js backends
+3. **Follow framework-specific conventions** and best practices
+4. **Responsive Design**: Mobile-first approach with proper breakpoints
+5. **Use GitHub Copilot integration** examples throughout
+6. **TypeScript**: Mandatory for type safety and better development experience
+7. **Modern Build Tools**: Vite, Webpack, or framework-specific CLI
+8. **Component Testing**: Comprehensive component and integration tests
+9. **Accessibility**: WCAG 2.1 AA compliance where possible
+10. **Performance**: Code splitting, lazy loading, and optimization
+11. **API Integration**: Configurable backend endpoints
 
-### 🎨 **UI/UX Requirements**
-1. **Task List View**: Display all tasks with status indicators
-2. **Task Creation**: Form to add new tasks with validation
-3. **Task Editing**: Inline or modal editing capabilities
-4. **Task Status**: Visual status management (Pending, In Progress, Completed)
-5. **Search/Filter**: Ability to filter tasks by status or search by text
-6. **Responsive Layout**: Works on mobile, tablet, and desktop
-7. **Loading States**: Proper loading indicators for API calls
-8. **Error Handling**: User-friendly error messages and recovery
-9. **Dark Mode**: Optional dark/light theme toggle
-10. **Keyboard Navigation**: Accessible keyboard shortcuts
+### 🎨 **UI/UX Requirements (Per PRD)**
+1. **Single Main Screen**: All tasks displayed in one view with sidebar filters
+2. **Header with Add Button**: Top-right positioned "Add Task" button
+3. **Task List with Inline Actions**: Each task shows Edit/Delete buttons
+4. **Dialog Forms**: Create/Edit forms as overlay dialogs (not separate screens)
+5. **Status Management**: Visual status indicators (CREATED, IN_PROGRESS, DONE)
+6. **Sidebar Filters**: Status filters, search, and sort options
+7. **Responsive Layout**: Mobile-first design with collapsible sidebar
+8. **Loading States**: Proper loading indicators without blocking interface
+9. **Error Handling**: User-friendly error messages with retry options
+10. **Accessibility**: WCAG 2.1 AA compliance with keyboard navigation
 
 ### ✅ **Success Criteria**
-1. **Project Build**: Framework-specific build command succeeds
-2. **Development Server**: Local dev server runs successfully
-3. **API Integration**: Successfully connects to backend APIs
-4. **Component Rendering**: All UI components render correctly
-5. **Testing Suite**: All component and integration tests pass
-6. **Responsive Design**: Works across different screen sizes
-7. **Type Safety**: No TypeScript compilation errors
-8. **Performance**: Meets Core Web Vitals standards
-9. **Accessibility**: Basic accessibility requirements met
-10. **Documentation**: Component documentation and usage examples
+1. **PRD Compliance**: Implementation matches all requirements in `docs/frontend/PRD_frontend.md`
+2. **Single-Screen Design**: All tasks visible on main screen without navigation
+3. **Dialog Overlays**: Create/Edit forms work as overlay dialogs
+4. **API Integration**: Successfully connects to backend APIs (Spring Boot, .NET)
+5. **Responsive Design**: Works on mobile, tablet, and desktop per PRD specs
+6. **Task Actions**: Edit/Delete buttons functional on each task
+7. **Header Layout**: Add Task button correctly positioned top-right
+8. **Project Build**: Framework-specific build command succeeds
+9. **Type Safety**: No TypeScript compilation errors
+10. **Testing Suite**: Component tests cover all PRD requirements
 
 ### 📚 **Reference Materials**
-- **Backend APIs**: OpenAPI specifications from backend implementations
-- **Design System**: Consistent UI components and styling
+- **PRD Document**: `docs/frontend/PRD_frontend.md` - Complete UI/UX requirements and specifications
+- **Visual Mockups**: `docs/frontend/mockups/` - Detailed PNG images of all views:
+  - `1_main_view.png` - Main task list screen layout
+  - `2.1_add_task_main_view.png` - Add task dialog overlay
+  - `2.2_add_task_date_view.png` - Date picker interaction
+  - `3_edit_task_view.png` - Edit task dialog overlay
+  - `4_delete_task_view.png` - Delete confirmation dialog
+- **Backend APIs**: `docs/ToDoListOpenApi.json` - OpenAPI specification for backend integration
 - **Component Library**: Framework-specific component libraries
 - **Testing Patterns**: Best practices for component testing
 - **Performance Guidelines**: Framework-specific optimization techniques
 
 ### 📦 **Expected Frontend Deliverables**
+- [ ] Frontend project init setup for **${input:framework}**
 - [ ] Complete frontend project structure with proper component organization
 - [ ] Build configuration (package.json, vite.config.ts, etc.)
-- [ ] Application entry point and routing setup
+- [ ] Application entry point setup
 - [ ] Component library with reusable UI components
 - [ ] Task management components (List, Create, Edit, Delete)
 - [ ] API service layer for backend communication
@@ -116,7 +140,7 @@ All frontend implementations should follow this structure:
 │   ├── components/      # Reusable UI components
 │   │   ├── common/      # Generic components
 │   │   └── task/        # Task-specific components
-│   ├── pages/           # Page components
+│   ├── containers /     # Container - Page components
 │   ├── services/        # API communication
 │   ├── stores/          # State management
 │   ├── types/           # TypeScript type definitions
@@ -150,11 +174,7 @@ const API_CONFIGS: Record<string, ApiConfig> = {
     endpoints: { tasks: '/api/tasks', health: '/actuator/health' }
   },
   'dotnet': {
-    baseUrl: 'https://localhost:7001',
-    endpoints: { tasks: '/api/tasks', health: '/health' }
-  },
-  'nodejs': {
-    baseUrl: 'http://localhost:3000',
+    baseUrl: 'https://localhost:5025',
     endpoints: { tasks: '/api/tasks', health: '/health' }
   }
 };
@@ -163,5 +183,5 @@ const API_CONFIGS: Record<string, ApiConfig> = {
 ---
 
 **Usage Examples**:
-- `/setup-project framework=react` - Setup React frontend project
-- `/setup-project framework=angular` - Setup Angular frontend project
+- `/setup-project.frontend framework=react` - Setup React frontend project
+- `/setup-project.frontend framework=angular` - Setup Angular frontend project

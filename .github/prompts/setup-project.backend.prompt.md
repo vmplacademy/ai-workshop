@@ -18,7 +18,9 @@ Based on the selected backend framework (`${input:framework}`), this prompt will
 ### 🎯 **Primary Objective**
 Create a comprehensive workshop backend project setup for **${input:framework}** that implements a contract-first API based on OpenAPI definitions. The goal is to create backend APIs for clients following API-first development principles with proper workshop structure and GitHub Copilot integration examples.
 
-**⚠️ IMPORTANT**: Implementation must be done **step-by-step** with user confirmation at each phase. Wait for user approval before proceeding to the next step.
+**⚠️ IMPORTANT**:
+- Implementation must be done **step-by-step** with user confirmation at each phase. Wait for user approval before proceeding to the next step.
+- Work within the current VS Code workspace. Do NOT create or open a new workspace during setup.
 
 ### 📋 **Framework-Specific Requirements**
 

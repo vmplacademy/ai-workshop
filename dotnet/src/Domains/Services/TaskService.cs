@@ -60,6 +60,11 @@ public class TaskService : ITaskService
         return true;
     }
 
+    public IEnumerable<TaskQuery> GetAllTasks()
+    {
+        return _db.Tasks.Select(ToQuery).ToList();
+    }
+
     private static TaskQuery ToQuery(TaskEntity entity) =>
         new TaskQuery(
             entity.Id,

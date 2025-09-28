@@ -15,7 +15,7 @@ Content-Type: application/json
 GET {{baseUrl}}/1
 
 ### Get all tasks
-GET {{baseUrl}}/tasks
+GET {{baseUrl}}
 
 ### Update a task
 PUT {{baseUrl}}/1
