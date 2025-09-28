@@ -9,6 +9,19 @@ The ToDo List Frontend Application provides users with an intuitive web interfac
 
 **Core Purpose**: Provide a seamless, user-friendly interface for task management with clear visual status indicators and efficient workflows.
 
+### 🎨 Visual Mockups Reference
+
+This PRD is supported by comprehensive visual mockups that demonstrate the exact user interface requirements:
+
+#### Static Image Mockups
+- **[Main View](mockups/1_main_view.png)** - Primary task list interface with sidebar filters
+- **[Add Task - Main View](mockups/2.1_add_task_main_view.png)** - Task creation workflow context
+- **[Add Task - Date Picker](mockups/2.2_add_task_date_view.png)** - Date selection interface
+- **[Add Task - Dialog](mockups/2.3_add_task_dialog_view.png)** - Modal dialog for task creation
+- **[Edit Task - View](mockups/3.1_edit_task_view.png)** - Task editing workflow context
+- **[Edit Task - Dialog](mockups/3.2_edit_task_dialog_view.png)** - Modal dialog for task editing
+- **[Delete Task - Confirmation](mockups/4_delete_task_view.png)** - Delete confirmation workflow
+
 ---
 
 ### ⚙️ Functional Requirements
@@ -221,7 +234,7 @@ Based on `docs/ToDoListOpenApi.json`:
 
 - **React** (with hooks, context, or state management libraries)
 - **Vue.js** (with Vuex or Composition API)
-- **Angular** (with RxJS and Angular Material)
+- **Angular** (with RxJS and Tailwind CSS)
 - **Svelte** (with stores and component libraries)
 - **Plain JavaScript** (with modern ES6+ and web components)
 
@@ -232,3 +245,25 @@ The specific technology choice should be based on:
 - Long-term maintenance and scalability needs
 
 **Implementation Priority**: Focus on user experience and interface structure first, then adapt to chosen technology stack while maintaining the core UX principles outlined in this PRD.
+
+---
+
+### 📖 Implementation References
+
+#### Visual Design Authority
+- **Primary Reference**: PNG mockups in `mockups/` directory demonstrate exact UI requirements
+- **Design System**: Tailwind CSS utility classes for consistent styling across implementations
+- **Single Source of Truth**: PNG mockups serve as definitive visual specification
+
+#### Mockup Usage Guidelines
+1. **UI Layout**: Follow the exact layout patterns shown in `1_main_view.png`
+2. **Modal Dialogs**: Implement dialogs exactly as shown in `2.3_add_task_dialog_view.png` and `3.2_edit_task_dialog_view.png`
+3. **User Flows**: Replicate the step-by-step workflows demonstrated in the sequential mockups
+4. **Interactive Behavior**: Implement hover states, animations, and responsive behavior as indicated in the mockups
+5. **Styling Patterns**: Use Tailwind CSS utility classes for consistent design system implementation
+
+#### Cross-Reference Validation
+When implementing any frontend feature, validate against:
+- The corresponding PNG mockup for pixel-perfect visual accuracy
+- This PRD for functional requirements compliance
+- OpenAPI specification (`docs/ToDoListOpenApi.json`) for API integration requirements
