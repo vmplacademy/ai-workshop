@@ -13,8 +13,7 @@ cd angular
 
 # Install and configure Tailwind CSS 4
 # Follow official Angular guide: https://tailwindcss.com/docs/installation/framework-guides/angular
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init
+npm install tailwindcss @tailwindcss/postcss postcss --force
 
 # Clear the Angular placeholder template
 # Remove all default Angular welcome content from src/app/app.component.html
@@ -43,25 +42,23 @@ This gives you a clean canvas to start implementing the todo application.
 Follow the official Angular integration guide at: https://tailwindcss.com/docs/installation/framework-guides/angular
 
 Key configuration steps:
-1. Configure `tailwind.config.js`:
-```javascript
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    "./src/**/*.{html,ts}",
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
+1. Install Tailwind CSS and PostCSS:
+```bash
+npm install tailwindcss @tailwindcss/postcss postcss --force
+```
+
+2. Create `.postcssrc.json` in the project root:
+```json
+{
+  "plugins": {
+    "@tailwindcss/postcss": {}
+  }
 }
 ```
 
-2. Add Tailwind directives to `src/styles.css`:
+3. Import Tailwind in `src/styles.css`:
 ```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 ```
 
 **Note**: The official guide ensures proper PostCSS integration with Angular's build system.
