@@ -73,6 +73,9 @@ dotnet run
 
 Swagger: **http://localhost:5025/swagger**.
 
+Używa bazy **in-memory** — nie wymaga Dockera ani PostgreSQL. Razem z Angularem daje pełny działający
+stack przy zerowej konfiguracji, kosztem tego, że dane znikają po restarcie procesu.
+
 ---
 
 ## Kontrakt API
@@ -109,7 +112,7 @@ Kilka miejsc w repo istnieje po to, żeby było na czym pracować:
 | Node.js | 20.11+ (frontend) |
 | JDK | 21 (Spring Boot) |
 | .NET SDK | 8.0 |
-| Docker | tylko dla backendów — frontend go nie potrzebuje |
+| Docker | **tylko dla Spring Boota** (Testcontainers) — frontend i backend .NET działają bez niego |
 
 ---
 
