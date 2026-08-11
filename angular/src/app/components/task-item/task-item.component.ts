@@ -10,11 +10,11 @@ import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
   selector: 'app-task-item',
   imports: [CommonModule],
   templateUrl: './task-item.component.html',
-  styleUrl: './task-item.component.css'
+  styleUrl: './task-item.component.css',
 })
 export class TaskItemComponent {
   @Input({ required: true }) task!: Task;
-  
+
   private taskService = inject(TaskService);
   private taskApiService = inject(TaskApiService);
   private dialog = inject(Dialog);
@@ -26,28 +26,28 @@ export class TaskItemComponent {
           label: 'To Do',
           bgColor: 'bg-red-100',
           textColor: 'text-red-800',
-          dotColor: 'bg-red-500'
+          dotColor: 'bg-red-500',
         };
       case 'IN_PROGRESS':
         return {
           label: 'In Progress',
           bgColor: 'bg-yellow-100',
           textColor: 'text-yellow-800',
-          dotColor: 'bg-yellow-500'
+          dotColor: 'bg-yellow-500',
         };
       case 'DONE':
         return {
           label: 'Done',
           bgColor: 'bg-green-100',
           textColor: 'text-green-800',
-          dotColor: 'bg-green-500'
+          dotColor: 'bg-green-500',
         };
       default:
         return {
           label: 'Unknown',
           bgColor: 'bg-gray-100',
           textColor: 'text-gray-800',
-          dotColor: 'bg-gray-500'
+          dotColor: 'bg-gray-500',
         };
     }
   }
@@ -89,9 +89,9 @@ export class TaskItemComponent {
   onStatusToggle() {
     // Quick status toggle via API
     const statusCycle = {
-      'TODO': 'IN_PROGRESS',
-      'IN_PROGRESS': 'DONE', 
-      'DONE': 'TODO'
+      TODO: 'IN_PROGRESS',
+      IN_PROGRESS: 'DONE',
+      DONE: 'TODO',
     } as const;
 
     const newStatus = statusCycle[this.task.status];
@@ -100,7 +100,7 @@ export class TaskItemComponent {
       taskName: this.task.taskName,
       description: this.task.description,
       status: newStatus,
-      dueDate: this.task.dueDate
+      dueDate: this.task.dueDate,
     };
 
     this.taskApiService.updateTask(updateCommand).subscribe({
@@ -112,7 +112,7 @@ export class TaskItemComponent {
         console.error('Error updating task status:', error);
         // Fallback: update local state if API fails
         this.taskService.toggleTaskStatus(this.task.id);
-      }
+      },
     });
   }
 
@@ -123,17 +123,17 @@ export class TaskItemComponent {
       hasBackdrop: true,
       backdropClass: 'bg-black/50',
       width: '500px',
-      maxWidth: '90vw'
+      maxWidth: '90vw',
     });
 
-    dialogRef.closed.subscribe(result => {
+    dialogRef.closed.subscribe((result) => {
       if (result) {
         const updateCommand: UpdateTaskCommand = {
           id: result.id,
           taskName: result.taskName,
           description: result.description,
           status: result.status,
-          dueDate: result.dueDate
+          dueDate: result.dueDate,
         };
 
         this.taskApiService.updateTask(updateCommand).subscribe({
@@ -145,7 +145,7 @@ export class TaskItemComponent {
             console.error('Error updating task:', error);
             // Fallback: update local state if API fails
             this.taskService.updateTask(result);
-          }
+          },
         });
       }
     });
@@ -162,7 +162,7 @@ export class TaskItemComponent {
           console.error('Error deleting task:', error);
           // Fallback: remove from local state if API fails
           this.taskService.deleteTask(this.task.id);
-        }
+        },
       });
     }
   }

@@ -1,6 +1,11 @@
 import { Component, Inject, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
 import { Task, TaskStatus } from '../../models/task.models';
 
@@ -8,29 +13,32 @@ import { Task, TaskStatus } from '../../models/task.models';
   selector: 'app-task-dialog',
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './task-dialog.component.html',
-  styleUrl: './task-dialog.component.css'
+  styleUrl: './task-dialog.component.css',
 })
 export class TaskDialogComponent {
   private fb = inject(FormBuilder);
   private dialogRef = inject(DialogRef<Task | null>);
-  
+
   taskForm: FormGroup;
   isEditMode: boolean;
-  
+
   statusOptions = [
     { value: 'TODO', label: 'To Do' },
     { value: 'IN_PROGRESS', label: 'In Progress' },
-    { value: 'DONE', label: 'Done' }
+    { value: 'DONE', label: 'Done' },
   ];
 
   constructor(@Inject(DIALOG_DATA) public data: Task | null) {
     this.isEditMode = !!data;
-    
+
     this.taskForm = this.fb.group({
-      taskName: [data?.taskName || '', [Validators.required, Validators.maxLength(100)]],
+      taskName: [
+        data?.taskName || '',
+        [Validators.required, Validators.maxLength(100)],
+      ],
       description: [data?.description || '', [Validators.maxLength(500)]],
       status: [data?.status || 'TODO', [Validators.required]],
-      dueDate: [this.formatDateForInput(data?.dueDate), [Validators.required]]
+      dueDate: [this.formatDateForInput(data?.dueDate), [Validators.required]],
     });
   }
 
@@ -55,19 +63,19 @@ export class TaskDialogComponent {
   onSubmit() {
     if (this.taskForm.valid) {
       const formValue = this.taskForm.value;
-      
+
       const task: Task = {
         id: this.data?.id || this.generateId(),
         taskName: formValue.taskName.trim(),
         description: formValue.description?.trim() || undefined,
         status: formValue.status as TaskStatus,
-        dueDate: formValue.dueDate
+        dueDate: formValue.dueDate,
       };
 
       this.dialogRef.close(task);
     } else {
       // Mark all fields as touched to show validation errors
-      Object.keys(this.taskForm.controls).forEach(key => {
+      Object.keys(this.taskForm.controls).forEach((key) => {
         this.taskForm.get(key)?.markAsTouched();
       });
     }
@@ -97,11 +105,16 @@ export class TaskDialogComponent {
 
   private getFieldLabel(fieldName: string): string {
     switch (fieldName) {
-      case 'taskName': return 'Task name';
-      case 'description': return 'Description';
-      case 'status': return 'Status';
-      case 'dueDate': return 'Due date';
-      default: return fieldName;
+      case 'taskName':
+        return 'Task name';
+      case 'description':
+        return 'Description';
+      case 'status':
+        return 'Status';
+      case 'dueDate':
+        return 'Due date';
+      default:
+        return fieldName;
     }
   }
 }

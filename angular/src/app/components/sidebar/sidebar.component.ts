@@ -7,7 +7,7 @@ import { FilterType } from '../../models/task.models';
   selector: 'app-sidebar',
   imports: [FormsModule],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.css'
+  styleUrl: './sidebar.component.css',
 })
 export class SidebarComponent {
   private taskService = inject(TaskService);
@@ -20,18 +20,18 @@ export class SidebarComponent {
   taskCounts = this.taskService.taskCounts;
 
   // Filter options
-  filterOptions: { value: FilterType, label: string, color: string }[] = [
+  filterOptions: { value: FilterType; label: string; color: string }[] = [
     { value: 'all', label: 'All Tasks', color: 'text-gray-700' },
     { value: 'TODO', label: 'To Do', color: 'text-red-600' },
     { value: 'IN_PROGRESS', label: 'In Progress', color: 'text-yellow-600' },
-    { value: 'DONE', label: 'Done', color: 'text-green-600' }
+    { value: 'DONE', label: 'Done', color: 'text-green-600' },
   ];
 
   // Sort options
   sortOptions = [
     { value: 'dueDate', label: 'Due Date' },
     { value: 'taskName', label: 'Task Name' },
-    { value: 'status', label: 'Status' }
+    { value: 'status', label: 'Status' },
   ];
 
   onFilterChange(filter: FilterType) {

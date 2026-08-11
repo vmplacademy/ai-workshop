@@ -1,4 +1,6 @@
-<aside class="w-64 lg:w-64 md:w-56 sm:w-full bg-gray-50 border-r border-gray-200 p-4 lg:p-6 overflow-y-auto">
+<aside
+  class="w-64 lg:w-64 md:w-56 sm:w-full bg-gray-50 border-r border-gray-200 p-4 lg:p-6 overflow-y-auto"
+>
   <!-- Filters Section -->
   <div class="mb-6">
     <h3 class="text-sm font-medium text-gray-900 mb-3">Filter by Status</h3>
@@ -6,16 +8,30 @@
       @for (option of filterOptions; track option.value) {
         <button
           (click)="onFilterChange(option.value)"
-          [class]="'w-full text-left px-3 py-2 rounded-lg text-sm transition-colors duration-200 flex items-center justify-between ' + 
-                   (filter() === option.value ? 'bg-blue-100 text-blue-700 border border-blue-200' : 'hover:bg-gray-100 text-gray-700')"
+          [class]="
+            'w-full text-left px-3 py-2 rounded-lg text-sm transition-colors duration-200 flex items-center justify-between ' +
+            (filter() === option.value
+              ? 'bg-blue-100 text-blue-700 border border-blue-200'
+              : 'hover:bg-gray-100 text-gray-700')
+          "
         >
           <span [class]="option.color">{{ option.label }}</span>
-          <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded-full">
+          <span
+            class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded-full"
+          >
             @switch (option.value) {
-              @case ('all') { {{ taskCounts().total }} }
-              @case ('TODO') { {{ taskCounts().todo }} }
-              @case ('IN_PROGRESS') { {{ taskCounts().inProgress }} }
-              @case ('DONE') { {{ taskCounts().done }} }
+              @case ("all") {
+                {{ taskCounts().total }}
+              }
+              @case ("TODO") {
+                {{ taskCounts().todo }}
+              }
+              @case ("IN_PROGRESS") {
+                {{ taskCounts().inProgress }}
+              }
+              @case ("DONE") {
+                {{ taskCounts().done }}
+              }
             }
           </span>
         </button>
@@ -33,10 +49,22 @@
         (ngModelChange)="onSearchChange($event)"
         placeholder="Search by name or description..."
         class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+      />
+      <div
+        class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
       >
-      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-        <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        <svg
+          class="h-4 w-4 text-gray-400"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          ></path>
         </svg>
       </div>
     </div>
@@ -67,13 +95,20 @@
           (click)="onSortOrderToggle()"
           class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 flex items-center justify-between"
         >
-          <span>{{ sortOrder() === 'asc' ? 'Ascending' : 'Descending' }}</span>
-          <svg 
+          <span>{{ sortOrder() === "asc" ? "Ascending" : "Descending" }}</span>
+          <svg
             class="w-4 h-4 transition-transform duration-200"
             [class.rotate-180]="sortOrder() === 'desc'"
-            fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
           >
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 15l7-7 7 7"
+            ></path>
           </svg>
         </button>
       </div>
@@ -94,7 +129,9 @@
       </div>
       <div class="flex justify-between">
         <span class="text-gray-600">In Progress:</span>
-        <span class="font-medium text-yellow-600">{{ taskCounts().inProgress }}</span>
+        <span class="font-medium text-yellow-600">{{
+          taskCounts().inProgress
+        }}</span>
       </div>
       <div class="flex justify-between">
         <span class="text-gray-600">Pending:</span>
