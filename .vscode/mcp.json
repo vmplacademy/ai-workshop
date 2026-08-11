@@ -1,5 +1,12 @@
 {
-  "inputs": [],
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "context7-api-key",
+      "description": "Context7 API Key",
+      "password": true
+    }
+  ],
   "servers": {
     "angular-cli": {
       "command": "npx",
@@ -22,7 +29,7 @@
       "type": "http",
       "url": "https://mcp.context7.com/mcp",
       "headers": {
-        "undefined": "{context7_api_key}"
+        "Authorization": "Bearer ${input:context7-api-key}"
       }
     }
   }
