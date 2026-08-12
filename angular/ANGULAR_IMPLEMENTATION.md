@@ -24,8 +24,8 @@ echo '<div class="container mx-auto p-4"><!-- Your app here --></div>' > src/app
 # Clear default styles from src/app/app.component.css
 echo '' > src/app/app.component.css
 
-# To run the application:
-ng serve
+# To run the application (the script picks the backend via proxy):
+npm run start:spring   # or: npm run start:dotnet
 # App will be available at http://localhost:4200
 ```
 
@@ -153,9 +153,10 @@ openTaskDialog(task?: Task) {
 
 ## 🔌 API Integration
 ```typescript
-// environment.ts
+// environment.ts — relative URL; the dev-server proxy picks the backend
+// npm run start:spring → :8080   |   npm run start:dotnet → :5025
 export const environment = {
-  apiUrl: 'http://localhost:8080/api', // or 5025 for .NET
+  apiUrl: '/api',
   endpoints: {
     tasks: '/tasks'
   }
@@ -177,10 +178,10 @@ getTasks() {
 ## ✅ Task Model
 ```typescript
 interface Task {
-  id: string;
+  id: string | number; // both backends are supported, ids differ in type
   taskName: string;
   description?: string;
-  status: 'TODO' | 'IN_PROGRESS' | 'DONE';
+  status: 'CREATED' | 'IN_PROGRESS' | 'DONE';
   dueDate: string;
 }
 ```
