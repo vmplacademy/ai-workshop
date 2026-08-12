@@ -10,17 +10,17 @@
 
   <ItemGroup>
     <!-- OpenAPI/Swagger -->
-  <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
+  <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.30" />
   <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-    
+
     <!-- Entity Framework Core + PostgreSQL -->
-  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
-  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0" />
-  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0" />
-  <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
-    
+  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.30" />
+  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.30" />
+  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.30" />
+  <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.11" />
+
     <!-- Health Checks -->
-  <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.0" />
+  <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.30" />
   <PackageReference Include="AspNetCore.HealthChecks.Npgsql" Version="8.0.2" />
     
     <!-- Validation -->
@@ -32,9 +32,9 @@
   <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
     
     <!-- Testing -->
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.30" />
     <PackageReference Include="Testcontainers.PostgreSql" Version="3.10.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.30" />
   </ItemGroup>
 
 </Project>
