@@ -1,23 +1,11 @@
+// Adres relatywny — o tym, który backend obsłuży żądanie, decyduje proxy dev servera.
+// Spring Boot (:8080)  →  npm run start:spring
+// .NET       (:5025)   →  npm run start:dotnet
+// Konfiguracja: proxy.conf.spring.json / proxy.conf.dotnet.json
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:5025/api', // .NET backend (HTTP not HTTPS)
+  apiUrl: '/api',
   endpoints: {
     tasks: '/tasks',
-  },
-};
-
-// Alternative backend configurations
-export const environments = {
-  springBoot: {
-    apiUrl: 'http://localhost:8080/api',
-    endpoints: { tasks: '/tasks' },
-  },
-  dotnet: {
-    apiUrl: 'http://localhost:5025/api', // .NET backend (HTTP not HTTPS)
-    endpoints: { tasks: '/tasks' },
-  },
-  nodejs: {
-    apiUrl: 'http://localhost:3000/api',
-    endpoints: { tasks: '/tasks' },
   },
 };

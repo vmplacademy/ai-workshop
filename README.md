@@ -37,17 +37,20 @@ czym różni się konfiguracja jednego narzędzia od drugiego.
 ```bash
 cd angular
 npm install
-npm run start
+npm run start:dotnet     # backend .NET (:5025)
+npm run start:spring     # backend Spring Boot (:8080)
 ```
 
-Aplikacja startuje na **http://localhost:4200**.
+Aplikacja startuje na **http://localhost:4200**. `npm start` jest równoważne `start:dotnet`.
 
-Działa **bez uruchomionego backendu** — przy braku odpowiedzi z API przechodzi na wbudowane dane
+**Wybór backendu to wybór skryptu, nie zmiana w kodzie.** Frontend odpytuje relatywny adres `/api`,
+a proxy dev servera kieruje ruch pod właściwy port (`proxy.conf.spring.json` / `proxy.conf.dotnet.json`).
+Oba backendy implementują ten sam kontrakt z `docs/ToDoListOpenApi.json`, więc aplikacja nie musi
+wiedzieć, który z nich odpowiada.
+
+Działa też **bez uruchomionego backendu** — przy braku odpowiedzi przechodzi na wbudowane dane
 demonstracyjne (konsola zgłasza wtedy błąd połączenia, to normalne). Dzięki temu można pracować
 nad frontendem bez Dockera i bazy danych.
-
-Domyślnie odpytuje backend .NET pod `http://localhost:5025/api`. Adres zmienia się
-w `src/environments/environment.ts` — plik zawiera też gotowe konfiguracje dla Spring Boota i Node.
 
 ### Backend — Spring Boot
 

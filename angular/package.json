@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.dotnet.json",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "format": "prettier --write src"
+    "format": "prettier --write src",
+    "start:spring": "ng serve --proxy-config proxy.conf.spring.json",
+    "start:dotnet": "ng serve --proxy-config proxy.conf.dotnet.json"
   },
   "private": true,
   "dependencies": {
