@@ -64,4 +64,11 @@ coverage/
 # Test output
 /test-output/
 
+# Claude
+# Heads-up: a machine-wide rule (core.excludesFile, usually ~/.config/git/ignore)
+# may hide these too, so editing this file alone can look like it did nothing.
+# `git check-ignore -v <path>` reports which rule actually wins.
+.claude/worktrees/
+.claude/settings.local.json
+
 # By convention, framework-specific .gitignore files are in subfolders
