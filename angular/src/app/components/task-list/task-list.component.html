@@ -1,0 +1,84 @@
+<main class="flex-1 p-6 overflow-y-auto">
+  <!-- Loading State -->
+  @if (loading) {
+    <div class="text-center py-12">
+      <div
+        class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"
+      ></div>
+      <p class="mt-4 text-gray-600">Loading tasks...</p>
+    </div>
+  }
+
+  <!-- Empty State -->
+  @else if (filteredTasks().length === 0) {
+    <div class="text-center py-12">
+      @if (searchQuery() || filter() !== "all") {
+        <!-- No results for current filter/search -->
+        <svg
+          class="mx-auto h-12 w-12 text-gray-400 mb-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+          ></path>
+        </svg>
+        <h3 class="text-lg font-medium text-gray-900 mb-2">No tasks found</h3>
+        <p class="text-gray-600 mb-4">
+          No tasks match your current filters or search criteria.
+        </p>
+        <button
+          (click)="clearFilters()"
+          class="text-blue-600 hover:text-blue-700 font-medium"
+        >
+          Clear filters
+        </button>
+      } @else {
+        <!-- No tasks at all -->
+        <svg
+          class="mx-auto h-12 w-12 text-gray-400 mb-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+          ></path>
+        </svg>
+        <h3 class="text-lg font-medium text-gray-900 mb-2">No tasks yet</h3>
+        <p class="text-gray-600 mb-4">
+          Get started by creating your first task.
+        </p>
+      }
+    </div>
+  }
+
+  <!-- Tasks List -->
+  @else {
+    <div class="space-y-4">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-lg font-semibold text-gray-900">
+          @if (filter() === "all") {
+            All Tasks
+          } @else {
+            {{ getFilterLabel(filter()) }} Tasks
+          }
+          <span class="ml-2 text-sm font-normal text-gray-500">
+            ({{ filteredTasks().length }})
+          </span>
+        </h2>
+      </div>
+
+      @for (task of filteredTasks(); track task.id) {
+        <app-task-item [task]="task" />
+      }
+    </div>
+  }
+</main>
