@@ -68,7 +68,7 @@ export class TaskService {
     const allTasks = this.tasks();
     return {
       total: allTasks.length,
-      todo: allTasks.filter((t) => t.status === 'TODO').length,
+      todo: allTasks.filter((t) => t.status === 'CREATED').length,
       inProgress: allTasks.filter((t) => t.status === 'IN_PROGRESS').length,
       done: allTasks.filter((t) => t.status === 'DONE').length,
     };
@@ -126,9 +126,9 @@ export class TaskService {
     if (!task) return;
 
     const statusCycle: Record<TaskStatus, TaskStatus> = {
-      TODO: 'IN_PROGRESS',
+      CREATED: 'IN_PROGRESS',
       IN_PROGRESS: 'DONE',
-      DONE: 'TODO',
+      DONE: 'CREATED',
     };
 
     const updatedTask = {

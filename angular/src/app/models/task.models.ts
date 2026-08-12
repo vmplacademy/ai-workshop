@@ -8,9 +8,9 @@ export interface Task {
   updatedAt?: string | null;
 }
 
-export type TaskStatus = 'TODO' | 'IN_PROGRESS' | 'DONE';
+export type TaskStatus = 'CREATED' | 'IN_PROGRESS' | 'DONE';
 
-export type FilterType = 'all' | 'TODO' | 'IN_PROGRESS' | 'DONE';
+export type FilterType = 'all' | 'CREATED' | 'IN_PROGRESS' | 'DONE';
 
 export interface CreateTaskCommand {
   taskName: string;

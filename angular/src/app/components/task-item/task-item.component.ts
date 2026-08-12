@@ -21,7 +21,7 @@ export class TaskItemComponent {
 
   getStatusConfig(status: string) {
     switch (status) {
-      case 'TODO':
+      case 'CREATED':
         return {
           label: 'To Do',
           bgColor: 'bg-red-100',
@@ -89,9 +89,9 @@ export class TaskItemComponent {
   onStatusToggle() {
     // Quick status toggle via API
     const statusCycle = {
-      TODO: 'IN_PROGRESS',
+      CREATED: 'IN_PROGRESS',
       IN_PROGRESS: 'DONE',
-      DONE: 'TODO',
+      DONE: 'CREATED',
     } as const;
 
     const newStatus = statusCycle[this.task.status];

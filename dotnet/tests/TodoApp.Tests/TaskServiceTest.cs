@@ -56,12 +56,12 @@ public class TaskServiceTest : IClassFixture<DbContextFixture>
             Assert.Equal(command.TaskName, result.TaskName);
             Assert.Equal(command.DueDate, result.DueDate);
             Assert.Equal(command.Description, result.Description);
-            Assert.Equal(TaskStatus.TODO, result.Status);
+            Assert.Equal(TaskStatus.CREATED, result.Status);
             Assert.True(result.CreatedAt <= DateTime.UtcNow);
         }
 
         [Fact]
-        public void Should_Set_Status_To_TODO_When_CreateTask()
+        public void Should_Set_Status_To_CREATED_When_CreateTask()
         {
             // given
             var service = new TaskService(_db);
@@ -71,7 +71,7 @@ public class TaskServiceTest : IClassFixture<DbContextFixture>
             var result = service.CreateTask(command);
 
             // then
-            Assert.Equal(TaskStatus.TODO, result.Status);
+            Assert.Equal(TaskStatus.CREATED, result.Status);
         }
     }
 

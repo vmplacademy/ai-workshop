@@ -2,7 +2,7 @@ namespace TodoApp.Dtos;
 
 public enum TaskStatus
 {
-    TODO,
+    CREATED,
     IN_PROGRESS,
     DONE
 }

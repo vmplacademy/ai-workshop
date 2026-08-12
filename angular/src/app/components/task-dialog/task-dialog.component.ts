@@ -23,7 +23,7 @@ export class TaskDialogComponent {
   isEditMode: boolean;
 
   statusOptions = [
-    { value: 'TODO', label: 'To Do' },
+    { value: 'CREATED', label: 'To Do' },
     { value: 'IN_PROGRESS', label: 'In Progress' },
     { value: 'DONE', label: 'Done' },
   ];
@@ -37,7 +37,7 @@ export class TaskDialogComponent {
         [Validators.required, Validators.maxLength(100)],
       ],
       description: [data?.description || '', [Validators.maxLength(500)]],
-      status: [data?.status || 'TODO', [Validators.required]],
+      status: [data?.status || 'CREATED', [Validators.required]],
       dueDate: [this.formatDateForInput(data?.dueDate), [Validators.required]],
     });
   }

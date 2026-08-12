@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
         taskName: 'Review Code',
         description:
           'Conduct code review for the new features and ensure quality standards.',
-        status: 'TODO',
+        status: 'CREATED',
         dueDate: '2025-10-03',
       },
       {
@@ -69,7 +69,7 @@ export class AppComponent implements OnInit {
         taskName: 'Write Documentation',
         description:
           'Create comprehensive documentation for the API endpoints and frontend components.',
-        status: 'TODO',
+        status: 'CREATED',
         dueDate: '2025-10-10',
       },
       {

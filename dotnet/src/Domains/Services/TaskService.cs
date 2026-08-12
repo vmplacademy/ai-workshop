@@ -19,7 +19,7 @@ public class TaskService : ITaskService
         {
             TaskName = command.TaskName,
             DueDate = command.DueDate,
-            Status = TaskStatus.TODO,
+            Status = TaskStatus.CREATED,
             Description = command.Description,
             CreatedAt = DateTime.UtcNow
         };

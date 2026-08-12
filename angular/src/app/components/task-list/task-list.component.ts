@@ -29,7 +29,7 @@ export class TaskListComponent {
 
   getFilterLabel(filter: FilterType): string {
     switch (filter) {
-      case 'TODO':
+      case 'CREATED':
         return 'To Do';
       case 'IN_PROGRESS':
         return 'In Progress';

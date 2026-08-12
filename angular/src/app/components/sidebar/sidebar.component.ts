@@ -22,7 +22,7 @@ export class SidebarComponent {
   // Filter options
   filterOptions: { value: FilterType; label: string; color: string }[] = [
     { value: 'all', label: 'All Tasks', color: 'text-gray-700' },
-    { value: 'TODO', label: 'To Do', color: 'text-red-600' },
+    { value: 'CREATED', label: 'To Do', color: 'text-red-600' },
     { value: 'IN_PROGRESS', label: 'In Progress', color: 'text-yellow-600' },
     { value: 'DONE', label: 'Done', color: 'text-green-600' },
   ];
