@@ -11,7 +11,7 @@ A modern, responsive single-screen todo application built with Angular 20, TypeS
 - **Advanced Search**: Search tasks by name or description
 - **Flexible Sorting**: Sort by due date, task name, or status with ascending/descending order
 - **Inline Actions**: Edit and delete buttons directly on each task card
-- **Status Management**: Click task checkbox to toggle between TODO → IN_PROGRESS → DONE
+- **Status Management**: Click task checkbox to cycle CREATED → IN_PROGRESS → DONE → CREATED
 
 ### 🎨 UI/UX Design
 - **Modern Design**: Clean interface following mockup specifications
@@ -26,7 +26,7 @@ A modern, responsive single-screen todo application built with Angular 20, TypeS
 - **Modern Control Flow**: Uses `@if`, `@for`, `@switch` syntax (no `*ngIf`, `*ngFor`)
 - **Reactive Forms**: Angular reactive forms with validation
 - **Angular CDK**: Dialog components with backdrop and positioning
-- **TypeScript 5.5**: Full type safety with interfaces and enums
+- **TypeScript 5.9**: Full type safety with interfaces and enums
 
 ## 📁 Project Structure
 
@@ -47,14 +47,15 @@ angular/
 │   └── environments/           # Backend configuration
 ├── ANGULAR_IMPLEMENTATION.md   # Detailed implementation guide
 ├── package.json               # Dependencies and scripts
-├── .postcssrc.json           # PostCSS config for Tailwind
-└── tailwind.config.js        # Tailwind CSS configuration (auto-generated)
+├── proxy.conf.spring.json     # Dev-server proxy → Spring Boot (:8080)
+├── proxy.conf.dotnet.json     # Dev-server proxy → .NET (:5025)
+└── .postcssrc.json           # PostCSS config for Tailwind 4
 ```
 
 ## 🛠️ Technology Stack
 
-- **Framework**: Angular 19.1.0 (with Angular 20 features)
-- **Language**: TypeScript 5.5
+- **Framework**: Angular 20.3
+- **Language**: TypeScript 5.9
 - **Styling**: Tailwind CSS 4.0
 - **UI Components**: Angular CDK (Dialog, Layout)
 - **Forms**: Angular Reactive Forms
@@ -66,7 +67,7 @@ angular/
 ## 📦 Installation & Setup
 
 ### Prerequisites
-- Node.js 18+ and npm
+- Node.js 20.19+ and npm (required by Angular 20)
 - Angular CLI 20+
 
 ### Quick Start
@@ -74,29 +75,28 @@ angular/
 # Navigate to the angular directory
 cd angular
 
-# Install dependencies (already done)
+# Install dependencies
 npm install
 
-# Start development server
-ng serve --port 4200
+# Start the dev server against the backend of your choice
+npm run start:dotnet     # .NET (:5025) — also the default `npm start`
+npm run start:spring     # Spring Boot (:8080)
 
 # Visit the application
 open http://localhost:4200
 ```
 
 ### Backend Integration
-Configure backend endpoints in `src/environments/environment.ts`:
+Choosing a backend means choosing a script, not editing code. `environment.ts` holds the
+relative `apiUrl: '/api'`; the dev-server proxy decides which backend serves it:
 
-```typescript
-export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:8080/api', // Spring Boot
-  // apiUrl: 'https://localhost:5025/api', // .NET
-  endpoints: {
-    tasks: '/tasks'
-  }
-};
-```
+| Script | Proxy config | Target |
+|---|---|---|
+| `npm run start:spring` | `proxy.conf.spring.json` | `http://localhost:8080` |
+| `npm run start:dotnet` | `proxy.conf.dotnet.json` | `http://localhost:5025` |
+
+With no backend running, `AppComponent` falls back to built-in demo data — the connection
+error logged to the console is expected in that case.
 
 ## 🎯 Component Overview
 
@@ -134,8 +134,7 @@ export const environment = {
 
 ### Supported Backends
 - **Spring Boot**: `http://localhost:8080/api`
-- **.NET**: `https://localhost:5025/api`
-- **Node.js**: `http://localhost:3000/api` (future)
+- **.NET**: `http://localhost:5025/api`
 
 ### API Endpoints
 All endpoints follow the OpenAPI specification in `docs/ToDoListOpenApi.json`:
@@ -167,10 +166,16 @@ The implementation follows the exact specifications from `docs/frontend/mockups/
 
 ### Available Scripts
 ```bash
-npm start           # Start development server (ng serve)
-npm run build      # Build for production
-npm run watch      # Build with file watching
-npm test           # Run unit tests
+npm start             # Dev server, proxied to .NET (alias of start:dotnet)
+npm run start:spring  # Dev server, proxied to Spring Boot
+npm run start:dotnet  # Dev server, proxied to .NET
+npm run build         # Build for production
+npm run watch         # Build with file watching
+npm test              # Run unit tests (opens Chrome, watch mode)
+npm run format        # Prettier over src/
+
+# Non-interactive run — for CI and agents
+npx ng test --watch=false --browsers=ChromeHeadless
 ```
 
 ### Modern Angular Features Used
